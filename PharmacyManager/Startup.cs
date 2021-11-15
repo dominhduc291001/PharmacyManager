@@ -1,3 +1,5 @@
+using Application.IServices;
+using Application.Services;
 using Data.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -32,8 +34,9 @@ namespace PharmacyManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IAuthServeice, AuthService>();
             services.AddDbContext<DrugRepositoryDBContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString(SystemContant.MainConnentionString)));
+               options.UseSqlServer(Configuration.GetConnectionString(SystemContant.MainConnectionString)));
             services.AddControllers();
 
             //Swagger

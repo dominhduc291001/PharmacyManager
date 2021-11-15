@@ -7,6 +7,6 @@ namespace PharmacyManager.Contants
 {
     public class SystemContant
     {
-        public const string MainConnentionString = "Pharmacy_DB";
+        public const string MainConnectionString = "Pharmacy_DB";
     }
 }

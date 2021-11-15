@@ -2,7 +2,9 @@
 using Data.Dtos;
 using Data.Models;
 using Data.ViewModels;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,47 +17,30 @@ namespace Application.Services
     public class AuthService : IAuthServeice
     {
         private readonly DrugRepositoryDBContext _context;
+        private object _configuration;
+
         public AuthService(DrugRepositoryDBContext context)
         {
             _context = context;
         }
 
-        public Task<LoginView> Login(LoginDto request)
+        public async Task<LoginView> Login(LoginDto request)
         {
             if(request == null)
             {
-                return Task.FromResult(new LoginView() { userId = "", token = "" });
+                return await Task.FromResult(new LoginView() { userId = "", token = "" });
             }
             try
             {
-                var res = _context.Database.ExecuteSqlCommand("USP_CHECK_LOGIN @userId, @userPass", parameters: request).ToString();
-                if(res == "FALSE")
-                {
-                    return Task.FromResult(new LoginView() { userId = "", token = "" });
-                }
-                else
-                {
-                    var claims = new[]
-                {
-                    new Claim(JwtRegisteredClaimNames.Sub,_configuration["Jwt:Subject"]),
-                    new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
-                    new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                    new Claim("username",_user.username),
-                };
-                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-                    var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-                    var token = new JwtSecurityToken(_configuration["Jwt:Issuer"], _configuration["Jwt:Audience"], claims, expires: DateTime.UtcNow.AddDays(1), signingCredentials: signIn);
-                    LoginView result = new LoginView();
-                    {
-                        result.username = _user.username;
-                        result.token = new JwtSecurityTokenHandler().WriteToken(token);
-                    };
-                    return result;
-                }
-            }catch(Exception ex)
+                var res = _context.
+                //{
+                    //return Task.FromResult(new LoginView() { userId = "", token = "" });
+                //}                
+            } catch(Exception ex)
             {
                 throw ex;
             }
+            return await Task.FromResult(new LoginView() { userId = "", token = "" });
         }
     }
 }
