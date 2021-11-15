@@ -1,3 +1,5 @@
+using Application.IServices;
+using Application.Services;
 using Data.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +36,9 @@ namespace PharmacyManager
         {
             services.AddDbContext<DrugRepositoryDBContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString(SystemContant.MainConnentionString)));
+
+            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddControllers();
 
             //Swagger

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.IServices
 {
-    public interface IAuthServeice
+    public interface IAuthService
     {
         Task<LoginView> Login(LoginDto request);
     }

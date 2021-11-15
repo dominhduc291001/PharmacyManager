@@ -1,4 +1,5 @@
 ﻿using System;
+using Data.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -422,7 +423,6 @@ namespace Data.Models
                     .HasColumnName("userPass")
                     .HasMaxLength(30);
             });
-
             OnModelCreatingPartial(modelBuilder);
         }
 
