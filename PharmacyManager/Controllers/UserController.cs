@@ -34,7 +34,7 @@ namespace PharmacyManager.Controllers
                     }
                     else
                     {
-                        return BadRequest(new { message = "Get info user failed !" });
+                        return BadRequest(new { message = "Get info user failed" });
                     }
                 }
             }
@@ -42,7 +42,7 @@ namespace PharmacyManager.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            return BadRequest(new { message = "Get info user failed !" });
+            return BadRequest(new { message = "Get info user failed" });
         }
     }
 }
