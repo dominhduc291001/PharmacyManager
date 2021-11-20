@@ -37,7 +37,7 @@ namespace Application.Services
             }
             try
             {
-                var res = await _context.Users.FromSqlRaw($"USP_CHECK_LOGIN {request.userId}, {request.userPass}").ToListAsync();
+                var res = await _context.Users.FromSqlRaw($"USP_CHECK_LOGIN {request.username}, {request.password}").ToListAsync();
                 var userT = res.FirstOrDefault();
                 if (userT != null)
                 {
