@@ -1,0 +1,84 @@
+<div class="container w-full">
+    <ul class="flex justify-between border-b text-xs sm:text-md">
+        <li class="-mb-px mr-1">
+            <a class="bg-white dark:bg-gray-900 inline-block border-l border-t border-r rounded-t
+            pb-2 pt-3 px-4 text-blue-700 font-semibold">개인정보변경</a>
+        </li>
+        <li>
+            <nz-breadcrumb [nzSeparator]="null" class="inline-block pb-2 pt-3 px-4 font-semibold">
+                <nz-breadcrumb-item class="text-gray-400">사용자 정보조회</nz-breadcrumb-item>
+                <nz-breadcrumb-separator class="mx-2 text-gray-400">></nz-breadcrumb-separator>
+                <nz-breadcrumb-item class="text-blue-700">개인정보변경</nz-breadcrumb-item>
+            </nz-breadcrumb>
+        </li>
+    </ul>
+
+    <div class="flex flex-col flex-auto bg-white min-h-full">
+        <div class="flex flex-col justify-between sm:flex-row border border-solid pb-3 pr-7">
+            <div class="pt-6 pl-6">
+                <div class="flex">
+                    <h1 class="self-center text-right w-26 sm:w-15">부서명</h1>
+                    <div class="ml-4 w-full sm:w-50">
+                        <input type="text" nz-input [(ngModel)]="searchDeptNm" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-2 sm:pt-6 pl-6">
+                <div class="flex">
+                    <h1 class="self-center text-right w-26 sm:w-15">키워드</h1>
+                    <div class="ml-4 w-full sm:w-auto">
+                        <nz-select [(ngModel)]="searchType" class="sm:inline-block w-full sm:w-auto"
+                            nzPlaceHolder="값을 선택">
+                            <nz-option nzLabel="담당자명" nzValue="A"></nz-option>
+                            <nz-option nzLabel="담당자ID" nzValue="B"></nz-option>
+                            <nz-option nzLabel="사원코드" nzValue="C"></nz-option>
+                            <nz-option nzLabel="핸드폰번호" nzValue="D"></nz-option>
+                            <nz-option nzLabel="이메일주소" nzValue="E"></nz-option>
+                        </nz-select>
+                        <div class="mt-2 sm:mt-0 sm:inline-block sm:ml-2 w-full sm:w-50">
+                            <input type="text" nz-input [(ngModel)]="searchText" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pb-3 text-right mt-3 pr-7">
+            <button (click)="searchList()" nz-button nzType="primary"><i nz-icon nzType="search"></i>검색</button>
+        </div>
+
+        <div class="flex flex-col max-w-full mt-6 p-4 flex-nowrap border border-solid">
+            <nz-table class="w-full" nzFrontPagination="false" [nzScroll]="reponsiveTable()" nzSize="small" #basicTable
+                [nzData]="listOfData" [nzLoading]="loading">
+                <thead>
+                    <tr>
+                        <th class="bg-gray-100 w-20 text-center">No.</th>
+                        <th class="bg-gray-100 text-center">부서명</th>
+                        <th class="bg-gray-100 text-center">담당자ID</th>
+                        <th class="bg-gray-100 text-center">담당자명</th>
+                        <th class="bg-gray-100 text-center">직위</th>
+                        <th class="bg-gray-100 text-center">핸드폰번호</th>
+                        <th class="bg-gray-100 text-center">이메일</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr *ngFor="let data of basicTable.data">
+                        <td>{{data.rowNumber}}</td>
+                        <td>{{data.deptNm}}</td>
+                        <td><a routerLink="change/{{data.userId}}">{{data.userId}}</a></td>
+                        <td>{{data.userNm}}</td>
+                        <td>{{data.ofcpsNm }}</td>
+                        <td>{{data.mbtlnum }}</td>
+                        <td>{{data.emailAdres }}</td>
+                    </tr>
+                </tbody>
+            </nz-table>
+
+            <div class="pb-3 w-full grid">
+                <nz-pagination class="place-self-center sm:mr-14" [(nzPageIndex)]="indexPage" [nzResponsive]="true"
+                    [nzTotal]="totalPage" [nzPageSize]="10" (nzPageIndexChange)="pageChange()"></nz-pagination>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="flex flex-nowrap flex-col w-full p-2 border border-solid border-blue-300 px-6">
+    <mat-form-field class="w-full mt-4" appearance="outline">
+        <mat-label>재발급 부수</mat-label>
+        <input class="text-black" [value]="dataPage?.formConsentT?.formConsent?.isgnNbfps"  disabled matInput>
+    </mat-form-field>
+
+    <mat-form-field class="w-full" appearance="outline">
+        <mat-label>재발급 사유</mat-label>
+        <input class="text-black" [value]="dataPage?.formConsentT?.fomConfmLastIssu?.isgnPrvonshCn"  disabled matInput>
+    </mat-form-field>
+</div>

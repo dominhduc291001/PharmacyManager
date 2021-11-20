@@ -1,0 +1,180 @@
+<div class="container w-full">
+    <nz-spin [nzSpinning]="isSpinning" nzTip="로딩...">
+        <ul class="flex justify-between border-b-2 text-xs sm:text-md">
+            <li class="-mb-px mr-1">
+                <a
+                    class="bg-white dark:bg-gray-900 inline-block border-l border-t border-r rounded-t pt-3 pb-2 px-4 text-blue-700 font-semibold">{{titlePage}}</a>
+            </li>
+            <li>
+                <nz-breadcrumb [nzSeparator]="null" class="inline-block pt-3 pb-2 px-4 font-semibold">
+                    <nz-breadcrumb-item class="text-gray-400">검정관리</nz-breadcrumb-item>
+                    <nz-breadcrumb-separator class="mx-2 text-gray-400">></nz-breadcrumb-separator>
+                    <nz-breadcrumb-item class="text-gray-400">접수처리</nz-breadcrumb-item>
+                    <nz-breadcrumb-separator class="mx-2 text-gray-400">></nz-breadcrumb-separator>
+                    <nz-breadcrumb-item class="text-blue-700">{{titlePage}}</nz-breadcrumb-item>
+                </nz-breadcrumb>
+            </li>
+        </ul>
+
+        <div class="flex flex-col flex-nowrap flex-auto bg-white  dark:bg-gray-800 min-h-full w-full">
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600 mt-2">
+                    <mat-icon class="icon-size-4 mr-1 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>진행현황
+                </p>
+
+                <div class="grid sm:hidden mt-5">
+                    <nz-steps class="justify-self-center" nzProgressDot nzDirection="vertical" nzSize="small"
+                        [nzCurrent]="step">
+                        <nz-step nzTitle="신청(접수대기)"></nz-step>
+                        <nz-step nzTitle="접수"></nz-step>
+                        <nz-step nzTitle="서류검토"></nz-step>
+                        <nz-step nzTitle="검정진행"></nz-step>
+                        <nz-step nzTitle="내부결재"></nz-step>
+                        <nz-step nzTitle="검정완료"></nz-step>
+                    </nz-steps>
+                </div>
+
+                <div class="hidden sm:grid sm:pl-8 px-2 mt-2">
+                    <nz-steps nzType="navigation" nzSize="small" [nzCurrent]="step">
+                        <nz-step nzTitle="신청(접수대기)" nzStatus="process"></nz-step>
+                        <nz-step nzTitle="접수" nzStatus="process"></nz-step>
+                        <nz-step nzTitle="서류검토" nzStatus="process"></nz-step>
+                        <nz-step nzTitle="검정진행" nzStatus="process"></nz-step>
+                        <nz-step nzTitle="내부결재" nzStatus="process"></nz-step>
+                        <nz-step nzTitle="검정완료" nzStatus="process"></nz-step>
+                    </nz-steps>
+                </div>
+            </div>
+
+            <nz-divider class="border-blue-300 mt-0 mb-2"></nz-divider>
+
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600">
+                    <mat-icon class="icon-size-4 mr-1 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>신청정보
+                </p>
+                <test-info-view [dataDetail]="dataDetail" class="mt-2"></test-info-view>
+            </div>
+
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600">
+                    <mat-icon class="icon-size-4 mr-1 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>업체정보
+                </p>
+                <entrps-info-view [dataDetail]="dataDetail" class="mt-2"></entrps-info-view>
+            </div>
+
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600">
+                    <mat-icon class="icon-size-4 mr-1 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>구비서류
+                </p>
+                <athrz-doc-view [athrzSn]="thisAthrzSn"></athrz-doc-view>
+            </div>
+
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600">
+                    <mat-icon class="icon-size-4 mr-1 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>검정신청지사 입력
+                </p>
+                <div class="flex flex-wrap w-full border border-solid border-blue-300 mt-2">
+                    <p class=" self-center h-full p-4 bg-blue-100">
+                        <span style="color: red;">* </span>검정신청지사
+                    </p>
+                    <div class="mx-4 my-2 w-32">
+                        <nz-select [(ngModel)]="dataSave.inspectionT.ktcBrffcCode" class="w-full">
+                            <nz-option nzValue=null nzLabel=""></nz-option>
+                            <nz-option *ngFor="let item of processSelect?.ktcBrffcCodeList" [nzValue]="item?.bsisCode"
+                                [nzLabel]="item?.bsisCodeNm"></nz-option>
+                        </nz-select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600">
+                    <mat-icon class="icon-size-4 mr-1 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>검정신청정보 입력
+                </p>
+                <athrz-detail-regist [dataView]="dataDetail" [processSelect]="processSelect" [dataTemp]="dataTemp"
+                    [tempSave]="dataTemp" [athrzSn]="thisAthrzSn" class="mt-2"></athrz-detail-regist>
+            </div>
+
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600">
+                    <mat-icon class="icon-size-4 mr-1 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>기타
+                </p>
+                <div class="flex flex-wrap w-full border border-solid border-blue-300 mt-2">
+                    <p class=" p-4 bg-blue-100">
+                        비고
+                    </p>
+                    <div class="p-4">
+                        {{dataDetail?.rm}}
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="dataDetail?.athrzProcessSttusCode === 'AD001005' ||
+                        dataDetail?.athrzProcessSttusCode === 'AD001006' ||
+                        dataDetail?.athrzProcessSttusCode === 'AD001007' "
+                class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600">
+                    <mat-icon class="icon-size-4 mr-1 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>검정결과
+                </p>
+                <athrz-detail-result [athrzSn]="thisAthrzSn" class="mt-2"></athrz-detail-result>
+            </div>
+
+            <div *ngIf="dataDetail?.athrzProcessSttusCode === 'AD001005' ||
+                        dataDetail?.athrzProcessSttusCode === 'AD001006' ||
+                        dataDetail?.athrzProcessSttusCode === 'AD001007' "
+                class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600">
+                    <mat-icon class="icon-size-4 mr-1 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>검정기록지
+                </p>
+                <athrz-chart-view [dataDetail]="dataDetail" class="mt-2"></athrz-chart-view>
+            </div>
+
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600">
+                    <mat-icon class="icon-size-4 mr-1 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>처리정보
+                </p>
+                <process-info-regist [(processDetailRegist)]="dataSave" class="mt-2"></process-info-regist>
+            </div>
+
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600">
+                    <mat-icon class="icon-size-4 mr-1 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>처리내역
+                </p>
+                <div class="flex flex-wrap w-full mt-2 border border-solid border-blue-300">
+                    <div class="px-4 pt-4 w-full">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label>처리내역</mat-label>
+                            <textarea [(value)]="dataSave.inspectionT.athrzProcessCn" matInput></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid w-full">
+                <div class="place-self-end mr-4 sm:mr-14">
+                    <button routerLink="/KTC/test/InspectionProcess/status" mat-raised-button
+                        color="primary">목록</button>
+                </div>
+            </div>
+
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full mb-10">
+                <p class="text-blue-600">
+                    <mat-icon class="icon-size-4 mr-1 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>진행이력 정보
+                </p>
+                <history-info-view [athrzSn]="thisAthrzSn"></history-info-view>
+            </div>
+        </div>
+    </nz-spin>
+</div>

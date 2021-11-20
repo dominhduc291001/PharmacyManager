@@ -1,0 +1,80 @@
+<div class="container w-full border border-solid border-blue-300 sm:p-4">
+    <div class="flex flex-nowrap flex-col w-full p-2 ">
+        <div class="flex flex-col pt-2 sm:pt-0 sm:flex-row w-full">
+            <div class="px-4 sm:px-0 sm:p-4 sm:w-1/2 flex flex-col" style="padding-right: 1em !important;">
+                <mat-form-field class="w-full md:w-3/4" appearance="outline">
+                    <mat-label>상호</mat-label>
+                    <input class="text-black" [value]="dataPage?.inspection?.entrpsNm" disabled matInput>
+                </mat-form-field>
+                <mat-form-field class="w-full md:w-3/4" appearance="outline">
+                    <mat-label>대표자명</mat-label>
+                    <input class="text-black" [value]="dataPage?.inspection?.rprsntvNm" disabled matInput>
+                </mat-form-field>
+            </div>
+            <div class="px-4 sm:px-0 sm:p-4 sm:w-1/2 flex flex-col" style="padding-left: 1em !important;">
+                <mat-form-field class="w-full md:w-3/4" appearance="outline">
+                    <mat-label>업체구분</mat-label>
+                    <input class="text-black" [value]="dataPage?.inspection?.entrpsSeNm" disabled matInput>
+                </mat-form-field>
+                <mat-form-field class="w-full md:w-3/4" appearance="outline">
+                    <mat-label>사업자등록번호</mat-label>
+                    <input class="text-black" [value]="lblBizNo(dataPage?.inspection?.bizrno)" disabled matInput>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <nz-divider class="border-purple-300 -mt-0.5"></nz-divider>
+
+        <div class="flex flex-col sm:flex-row w-full">
+            <div class="px-4 sm:px-0 sm:p-4 sm:w-1/2 flex flex-col" style="padding-right: 1em !important;">
+                <mat-form-field class="w-full md:w-3/4" appearance="outline">
+                    <mat-label>사업장 주소</mat-label>
+                    <input class="text-black" [value]="bplcDetail()" disabled matInput>
+                </mat-form-field>
+            </div>
+            <div class="px-4 sm:px-0 sm:p-4 sm:w-1/2 flex flex-col" style="padding-left: 1em !important;">
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row w-full">
+            <div class="px-4 sm:px-0 sm:p-4 sm:w-1/2 flex flex-col" style="padding-right: 1em !important;">
+                <mat-form-field class="w-full md:w-3/4" appearance="outline">
+                    <mat-label>사업장 전화번호</mat-label>
+                    <input class="text-black" [value]="dataPage?.inspection?.bplcTelno" disabled matInput>
+                </mat-form-field>
+            </div>
+            <div class="px-4 sm:px-0 sm:p-4 sm:w-1/2 flex flex-col" style="padding-left: 1em !important;">
+                <mat-form-field class="w-full md:w-3/4" appearance="outline">
+                    <mat-label>사업장 팩스번호</mat-label>
+                    <input class="text-black" [value]="dataPage?.inspection?.bplcFxnum" disabled matInput>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <nz-divider class="border-purple-300 -mt-0.5"></nz-divider>
+
+        <div class="flex flex-col sm:flex-row w-full">
+            <div class="px-4 sm:px-0 sm:p-4 sm:w-1/2 flex flex-col" style="padding-right: 1em !important;">
+                <mat-form-field class="w-full md:w-3/4" appearance="outline">
+                    <mat-label>공장주소</mat-label>
+                    <input class="text-black" [value]="fctryDetail()" disabled matInput>
+                </mat-form-field>
+            </div>
+            <div class="px-4 sm:px-0 sm:p-4 sm:w-1/2 flex flex-col" style="padding-left: 1em !important;">
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row w-full">
+            <div class="px-4 sm:px-0  sm:p-4 sm:w-1/2 flex flex-col" style="padding-right: 1em !important;">
+                <mat-form-field class="w-full md:w-3/4 mr-1" appearance="outline">
+                    <mat-label>공장 전화번호</mat-label>
+                    <input class="text-black" [value]="dataPage?.inspection?.fctryTelno" disabled matInput>
+                </mat-form-field>
+            </div>
+            <div class="px-4 sm:px-0 sm:p-4 sm:w-1/2 flex flex-col" style="padding-left: 1em !important;">
+                <mat-form-field class="w-full md:w-3/4 ml-1" appearance="outline">
+                    <mat-label>공장 팩스번호</mat-label>
+                    <input class="text-black" [value]="dataPage?.inspection?.fctryFxnum" disabled matInput>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</div>

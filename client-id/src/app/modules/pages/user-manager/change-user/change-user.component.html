@@ -1,0 +1,129 @@
+<div class="container w-full">
+    <ul class="flex justify-between border-b text-xs sm:text-md">
+        <li class="-mb-px mr-1">
+            <a class="bg-white dark:bg-gray-900 inline-block border-l border-t border-r rounded-t
+            pb-2 pt-3 px-4 text-blue-700 font-semibold">개인정보변경</a>
+        </li>
+        <li>
+            <nz-breadcrumb [nzSeparator]="null" class="inline-block pb-2 pt-3 px-4 font-semibold">
+                <nz-breadcrumb-item class="text-gray-400">사용자 정보조회</nz-breadcrumb-item>
+                <nz-breadcrumb-separator class="mx-2 text-gray-400">></nz-breadcrumb-separator>
+                <nz-breadcrumb-item class="text-blue-700">개인정보변경</nz-breadcrumb-item>
+            </nz-breadcrumb>
+        </li>
+    </ul>
+
+    <div class="flex flex-col bg-white h-full p-5 border">
+        <div class="flex flex-wrap md:flex-nowrap w-full mt-2">
+            <nz-table [nzLoading]="loading" class="w-full mx-5">
+                <tr>
+                    <td class="bg-gray-100 py-2 border text-center w-1/3 border-r-0 border-b-0">사원코드</td>
+                    <td class="py-2 px-5 border w-2/3 border-b-0">{{user?.emplCode}}</td>
+                </tr>
+                <tr>
+                    <td class="bg-gray-100 py-2 px-5 border text-center w-1/3 border-r-0 border-b-0">부서명</td>
+                    <td class="py-2 px-5 border w-2/3 border-b-0">{{user?.ofcpsNm}}</td>
+                </tr>
+                <tr>
+                    <td class="bg-gray-100 py-2 px-5 border text-center w-1/3 border-r-0 border-b-0">직위명</td>
+                    <td class="py-2 px-5 border w-2/3 border-b-0">{{user?.emailAdres}}</td>
+
+                </tr>
+                <tr>
+                    <td class="bg-gray-100 py-2 px-5 border text-center w-1/3 border-r-0 border-b-0">전화번호</td>
+                    <td class="py-2 px-5 border w- border-b-0">{{user?.userId}}</td>
+                </tr>
+                <tr>
+                    <td class="bg-gray-100 py-2 px-5 border text-center w-1/3 border-r-0">이메일</td>
+                    <td class="py-2 px-5 border w-2/3">{{user?.mbtlnum}}</td>
+                </tr>
+            </nz-table>
+            <nz-table [nzLoading]="loading" class="w-full mx-5">
+                <tr>
+                    <td
+                        class="bg-gray-100 py-2 px-5 border text-center w-1/3 border-t-0 md:border-t border-r-0 border-b-0">
+                        사원명</td>
+                    <td class="py-2 px-5 border w-2/3 border-b-0 border-t-0 md:border-t">{{user?.deptNm}}</td>
+                </tr>
+                <tr>
+                    <td class="bg-gray-100 py-2 px-5 border text-center w-1/3 border-r-0 border-b-0">사용자</td>
+                    <td class="py-2 px-5 border w-2/3 border-b-0">{{user?.telno}}</td>
+                </tr>
+                <tr>
+                    <td class="bg-gray-100 py-2 px-5 border text-center w-1/3 border-r-0 border-b-0">직무내용</td>
+                    <td class="py-2 px-5 border w-2/3 border-b-0">{{user?.userNm}}</td>
+                </tr>
+                <tr>
+                    <td class="bg-gray-100 py-2 px-5 border text-center w-1/3 border-r-0">핸드폰 번호</td>
+                    <td class="py-2 px-5 border w-2/3">{{user?.dtyCn}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="text-right mt-3 sm:mt-2 hidden sm:block">
+                            <button (click)="showModalMiddle()" nz-button nzType="primary">비밀번호 변경</button>
+                            <a routerLink="../../" nz-button nzType="primary" class="ml-3">검색</a>
+                        </div>
+                    </td>
+                </tr>
+            </nz-table>
+        </div>
+
+        <div class="flex justify-center mt-3 sm:hidden">
+            <button (click)="showModalMiddle()" nz-button nzType="primary">비밀번호 변경</button>
+            <a routerLink="../../" nz-button nzType="primary" class="ml-3">검색</a>
+        </div>
+
+        <nz-modal [(nzVisible)]="isVisibleMiddle" nzClosable="false" [nzFooter]="null">
+            <ng-container *nzModalContent>
+                <nz-spin [nzSpinning]="isSpin">
+                    <div class="mt-2 text-4xl text-center font-extrabold tracking-tight leading-tight mb-6">비밀번호 변경
+                    </div>
+                    <form [formGroup]="formData" (ngSubmit)="submitForm()">
+                        <mat-form-field appearance="fill" class="w-full">
+                            <mat-label>현재 비밀번호 <span class="text-red-500">(필수)</span></mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordCurrency"
+                                required>
+                            <mat-error *ngIf="formData.get('passwordCurrency').invalid">{{getErrorPasswordCurrency()}}
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field errorState="true" appearance="fill" class="w-full mt-3">
+                            <mat-label>신규 비밀번호 <span class="text-red-500">(필수)</span></mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordNew" required
+                                #focusInput>
+                            <mat-error *ngIf="formData.get('passwordNew').invalid">{{getErrorPasswordNew()}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" class="w-full mt-3">
+                            <mat-label>신규 비밀번호 확인 <span class="text-red-500">(필수)</span></mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordNewAgain"
+                                required>
+                            <mat-error *ngIf="formData.get('passwordNewAgain').invalid">{{getErrorPasswordNewAgain()}}
+                            </mat-error>
+                        </mat-form-field>
+
+                        <div class="flex justify-between w-full">
+                            <div class="flex self-center float-left">
+                                <span class="self-center mr-1">비밀번호 표시</span>
+                                <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                    [attr.aria-pressed]="hide">
+                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </a>
+                            </div>
+
+                            <div class="flex self-center">
+                                <button type="submit" nz-button nzType="primary" class="self-center">저장</button>
+                                <a nz-button nzType="default" class="self-center ml-2"
+                                    (click)="handleCancelMiddle()">닫기</a>
+                            </div>
+                        </div>
+
+                        <mat-error *ngIf="messError !== ''" class='text-center mt-2 bg-red-100 py-1'>{{messError}}
+                        </mat-error>
+                    </form>
+                </nz-spin>
+            </ng-container>
+        </nz-modal>
+    </div>
+</div>

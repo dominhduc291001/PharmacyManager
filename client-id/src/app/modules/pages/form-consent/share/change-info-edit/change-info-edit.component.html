@@ -1,0 +1,11 @@
+<div class="flex flex-nowrap flex-col w-full p-2 border border-solid border-blue-300">
+    <mat-form-field class="w-full mt-4 md:w-3/4" appearance="outline">
+        <mat-label>변경신청내용</mat-label>
+        <textarea class="text-black" [value]="dataPage?.formConsentT?.formConsent?.changeReqstDtls"   matInput></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="w-full md:w-3/4" appearance="outline">
+        <mat-label>변경처리내용</mat-label>
+        <textarea class="text-black" [value]="dataPage?.formConsentT?.formConsent?.changeProcessDtls"   matInput></textarea>
+    </mat-form-field>
+</div>

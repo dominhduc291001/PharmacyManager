@@ -1,0 +1,67 @@
+<nz-spin nzTip="로딩..." [nzSpinning]="isSpin">
+    <div class="container w-full border border-solid border-blue-300">
+        <div class="flex flex-nowrap flex-col w-full p-2 ">
+            <div class="flex flex-col pt-2 sm:pt-0 sm:flex-row w-full">
+                <div class="sm:w-1/2 flex flex-col">
+                    <mat-form-field class="w-full " appearance="outline">
+                        <mat-label>업체명</mat-label>
+                        <input class="text-black pr-0 sm:pr-4" [(ngModel)]="searchRq.searchEntrprsNm" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="sm:w-1/2 flex flex-col ">
+                    <mat-form-field class="w-full pl-0 sm:pl-4" appearance="outline">
+                        <mat-label>대표자명</mat-label>
+                        <input class="text-black" [(ngModel)]="searchRq.searchRprsntvNm" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="flex flex-col mt-0.5 mb-3 sm:p-4 sm:flex-row h-auto w-full  border border-solid border-gray-300 ">
+                <label>업체구분</label>
+                <mat-radio-group [(ngModel)]="searchRq.searchCategory"  class="sm:ml-4 py-2 sm:py-0">
+                    <mat-radio-button class="ml-2 mt-2 md:mt-0" value="">전체</mat-radio-button>
+                    <mat-radio-button class="ml-2 mt-2 md:mt-0" value="Y">제작/수리/수입</mat-radio-button>
+                    <mat-radio-button class="ml-2 mt-2 md:mt-0" value="N">계량증명업체</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="flex p-1 sm:p-2 justify-end ">
+                <button (click)="search()" class="h-10 w-20 ml-2 mb-1" nz-button nzType="defaulty" [nzSize]="'small'">검색</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col flex-nowrap mt-6 w-full">
+        <div class="flex mt-2 flex-col w-full p-2 border border-solid border-blue-300">
+            <nz-table class=" w-full" nzFrontPagination="false"
+                [nzScroll]="{ x: '500px' }" nzSize="small" [nzLoading]="loadingTable"
+                 #basicTable [nzData]="dataTable">
+            <thead>
+              <tr>
+                <th class="bg-gray-100 text-center">번호</th>
+                <th class="bg-gray-100 text-center">업체명</th>
+                <th class="bg-gray-100 text-center">대표자명</th>
+                <th class="bg-gray-100 text-center">업체구분</th>
+                <th class="bg-gray-100 text-center">등록일</th>
+            </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr *ngFor="let data of basicTable.data">
+                  <td>{{data.rowNumber}}</td>
+                  <td><a class="cursor-pointer" (click)="close(data)">{{data.entrprsNm}}</a></td>
+                  <td>{{data.rprsntvNm}}</td>
+                  <td>{{data.rcognSeCodeNm}}</td>
+                  <td>{{data.rcognDe}}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+          <div class="pb-3 w-full grid ">
+            <nz-pagination class="place-self-center sm:mr-14"
+            [(nzPageIndex)]="indexPage"
+            [nzResponsive]="true"
+            [nzTotal]="totalPage" [nzPageSize]="10"
+            (nzPageIndexChange)= "pageChange()"></nz-pagination>
+        </div>
+        </div>
+    </div>
+</nz-spin>
+

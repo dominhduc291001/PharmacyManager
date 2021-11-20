@@ -1,0 +1,45 @@
+<div class="container w-full">
+    <nz-spin [nzSpinning]="isSpinning"  nzTip="로딩...">
+        <div class="flex flex-col flex-nowrap flex-auto bg-white  dark:bg-gray-800 min-h-full w-full">
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600">
+                    <mat-icon class="icon-size-4 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>신청정보 입력
+                </p>
+                <application-info class="mt-2" [(dataPage)]="dataSave"></application-info>
+            </div>
+
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600">
+                    <mat-icon class="icon-size-4 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>신청정보 입력
+                </p>
+                <entrps-info-edit class="mt-2" [(dataPage)]="dataSave"></entrps-info-edit>
+            </div>
+
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600">
+                    <mat-icon class="icon-size-4 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>신청정보 입력
+                </p>
+                <info-athrz-detail-regist [dataView]="dataRegist"
+                [processSelect]="processSelect"
+                [dataTemp]="dataTemp"
+                [tempSave]="dataTemp"
+                [athrzSn]="thisAthrzSn"
+                class="mt-2"></info-athrz-detail-regist>
+            </div>
+
+            <div class="grid  w-full mb-4">
+                <div class="flex place-self-end">
+                    <div class="mr-5">
+                        <button (click)="saveRequest()" mat-raised-button color="primary">현재상태저장</button>
+                    </div>
+                    <div class="sm:mr-14">
+                        <button routerLink="/KTC/test/InspectionInfo/InfoList"  mat-raised-button color="primary">목록</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nz-spin>
+</div>

@@ -1,0 +1,154 @@
+<div class="container">
+    <nz-spin nzTip="로딩..." [nzSpinning]="isSpin">
+        <div class="flex flex-col flex-nowrap w-full mb-6">
+            <p class="text-blue-600">
+                <mat-icon class="icon-size-4 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                </mat-icon>
+                유량부
+            </p>
+            <div class="flex mt-2 flex-col w-full p-2 border border-solid border-blue-300">
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>유량부 형식</mat-label>
+                        <input [value]="dataHeatMeter?.fluxFomCodeName || ''" class="text-black" matInput disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>내갑 형식</mat-label>
+                        <input [value]="dataHeatMeter?.innerFomCodeName || ''" class="text-black" matInput disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>종류</mat-label>
+                        <input [value]="dataHeatMeter?.kndCodeName || ''" class="text-black" matInput disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>유량부 등급</mat-label>
+                        <input [value]="dataHeatMeter?.fluxLevelCodeName || ''" class="text-black" matInput disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-full" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>온도 한계</mat-label>
+                        <input [value]="'(' + (dataHeatMeter?.fluxTpLimitNm || '') + ') ˚C'" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>호칭지름</mat-label>
+                        <input [value]="(dataHeatMeter?.fluxNmNmValue || '') + ' mm'" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>환경등급</mat-label>
+                        <input [value]="(dataHeatMeter?.fluxEnvrnGradCodeName || '')" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label>공급전원 (메인)</mat-label>
+                        <input *ngIf="dataHeatMeter?.fluxMainSuplySrcelctValue !== null"
+                            [value]="(dataHeatMeter?.fluxMainSuplySrcelctValue || '') + ' V'" class="text-black"
+                            matInput disabled>
+                        <input *ngIf="dataHeatMeter?.fluxMainSuplySrcelctValue === null" value="" class="text-black"
+                            matInput disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label>공급전원 (보조)</mat-label>
+                        <input *ngIf="dataHeatMeter?.fluxAsstnSuplySrcelctValue !== null"
+                            [value]="(dataHeatMeter?.fluxAsstnSuplySrcelctValue || '') + 'V'" class="text-black"
+                            matInput disabled>
+                        <input *ngIf="dataHeatMeter?.fluxAsstnSuplySrcelctValue === null" value="" class="text-black"
+                            matInput disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-full" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>과부하 유량</mat-label>
+                        <input [value]="(dataHeatMeter?.overFluxVal || '') + ' m³/h'" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>최대유량</mat-label>
+                        <input [value]="(dataHeatMeter?.mxmmFluxVal || '')  + ' m³/h'" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>최소유량</mat-label>
+                        <input [value]="(dataHeatMeter?.mummFluxVal || '') + ' m³/h'" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-full" appearance="outline">
+                        <mat-label>제조자 또는 수입사</mat-label>
+                        <input [value]="dataHeatMeter?.fluxMakrNm || ''" class="text-black" matInput disabled>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col flex-nowrap w-full">
+            <p class="text-blue-600">
+                <mat-icon class="icon-size-4 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                </mat-icon>
+                연산부 및 감온부
+            </p>
+            <div class="flex mt-2 flex-col w-full p-2 border border-solid border-blue-300">
+                <div class="flex flex-row">
+                    <mat-form-field class="w-full" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>감온부 형식</mat-label>
+                        <input [value]="dataHeatMeter?.calcTmstFomNm || ''" class="text-black" matInput disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>환경등급</mat-label>
+                        <input [value]="dataHeatMeter?.calcEnvrnGradCodeName || ''" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>온도차 한계</mat-label>
+                        <input [value]="'(' + (dataHeatMeter?.calcTpLimitNm || '') + ') ˚K'" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-full" appearance="outline">
+                        <mat-label>열량단위</mat-label>
+                        <input [value]="dataHeatMeter?.calcColumnQyUnitNm || ''" class="text-black" matInput disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label>공급전원 (메인)</mat-label>
+                        <input [value]="(dataHeatMeter?.calcMainSuplySrcelctValue || '') + ' V'" class="text-black"
+                            matInput disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label>공급전원 (보조)</mat-label>
+                        <input [value]="(dataHeatMeter?.calcAsstnSuplySrcelctValue || '') + 'V'" class="text-black"
+                            matInput disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-full" appearance="outline">
+                        <mat-label>제조자 또는 수입사</mat-label>
+                        <input [value]="dataHeatMeter?.makrNm" class="text-black" matInput disabled>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid mt-6 w-full">
+            <div class="place-self-end">
+                <button (click)="close()" class="h-10 w-20 -mt-2 ml-2 mb-1" nz-button nzType="primary"
+                    [nzSize]="'small'">닫기</button>
+            </div>
+        </div>
+    </nz-spin>
+</div>

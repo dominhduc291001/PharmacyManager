@@ -1,0 +1,21 @@
+<div class="container w-full border border-solid border-blue-300 sm:p-4">
+    <div class="flex flex-nowrap flex-col w-full p-2">
+        <div class="flex flex-col pt-2 sm:pt-0 sm:flex-row w-full">
+            <div class="px-4 sm:px-0 sm:p-4 sm:w-1/2 flex flex-col sm:pr-4 md:pr-0">
+                <mat-form-field class="w-full md:w-3/4" appearance="outline">
+                    <mat-label>상호</mat-label>
+                    <mat-select [(ngModel)]="mrnrCode">
+                        <mat-option [value]=''> =선택= </mat-option>
+                        <mat-option *ngFor="let item of dataPage?.mrnrSeCodeList" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="px-4 sm:px-0 sm:p-4 sm:w-1/2 flex flex-col sm:pl-4 md:pl-0">
+                <mat-form-field class="w-full md:w-3/4" appearance="outline">
+                    <mat-label>업체구분</mat-label>
+                    <input class="text-black" [value]="dataPage?.formConsentT?.formConsent?.modelNm"  matInput>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</div>

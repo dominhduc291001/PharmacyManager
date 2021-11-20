@@ -1,0 +1,125 @@
+<div class="container w-full border border-solid border-blue-300 sm:p-4">
+    <div class="flex flex-nowrap flex-col w-full p-2 ">
+        <div class="flex flex-col sm:flex-row w-full">
+            <div class=" sm:w-1/2 flex flex-col">
+                <div class="flex flex-row w-full sm:w-3/4">
+                    <mat-form-field class="w-4/5"  appearance="outline">
+                        <mat-label>상호</mat-label>
+                        <input class="text-black" [(ngModel)]="dataPage.inspectionT.entrpsNm" matInput>
+                    </mat-form-field>
+                    <button class="h-13 mt-1 w-22 ml-2 " (click)="entrpsSearch()"  nz-button nzType="defaulty">업체검색</button>
+                </div>
+
+                <mat-form-field class="w-full sm:w-3/4" appearance="outline">
+                    <mat-label>대표자명</mat-label>
+                    <input class="text-black" [(ngModel)]="dataPage.inspectionT.rprsntvNm" disabled matInput>
+                </mat-form-field>
+            </div>
+            <div class="sm:w-1/2 flex flex-col ">
+
+                <mat-form-field class="w-full sm:w-3/4" appearance="outline">
+                    <mat-label>업체구분</mat-label>
+                    <input class="text-black" [(ngModel)]="dataPage.inspectionT.entrpsSeNm" disabled matInput>
+                </mat-form-field>
+
+                <mat-form-field class="w-full sm:w-3/4" appearance="outline">
+                    <mat-label>사업자등록번호</mat-label>
+                    <input class="text-black" [(ngModel)]="dataPage.inspectionT.bizrno" disabled matInput>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="flex flex-col  w-full">
+            <div class="w-full flex flex-col">
+                <div class="flex flex-col sm:flex-row w-full sm:w-4/5">
+                    <mat-form-field class="w-full sm:w-1/2 pr-0 sm:pr-7"  appearance="outline">
+                        <mat-label>사업장주소</mat-label>
+                        <mat-select [(ngModel)]="entrprsAdres" (selectionChange)="changeEntrprsAdres($event)">
+                            <mat-option [value]=null> =선택= </mat-option>
+                            <ng-container *ngFor="let item of dataAddress">
+                                <mat-option *ngIf="item.entrprsAdresSeCode === 'AC002001'" [value]="item.entrprsAdresSn">{{item.entrprsAdresNm}}</mat-option>
+                            </ng-container>
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="flex flex-row w-full sm:w-1/2">
+                        <mat-form-field class="w-4/5"  appearance="outline">
+                            <input class="text-black" [(ngModel)]="dataPage.inspectionT.bplcZip" matInput>
+                        </mat-form-field>
+                        <button class="h-13 mt-1 w-22 ml-2 " (click)="zipCodeOpen()" nz-button nzType="defaulty">주소검색</button>
+                    </div>
+                </div>
+
+                <mat-form-field class="w-full sm:w-4/5" appearance="outline">
+                    <input class="text-black" [(ngModel)]="dataPage.inspectionT.bplcBassAdres"  matInput>
+                </mat-form-field>
+
+                <mat-form-field class="w-full sm:w-4/5" appearance="outline">
+                    <input class="text-black" [(ngModel)]="dataPage.inspectionT.bplcDetailAdres"  matInput>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row w-full sm:w-4/5 ">
+            <div class="sm:w-1/2 flex flex-col pr-0 sm:pr-7 ">
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>사업장 전화번호 </mat-label>
+                    <input class="text-black" [(ngModel)]="dataPage.inspectionT.bplcTelno"  matInput>
+                </mat-form-field>
+            </div>
+            <div class="sm:w-1/2 flex flex-col ">
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>사업장 팩스번호 </mat-label>
+                     <input class="text-black" [(ngModel)]="dataPage.inspectionT.bplcFxnum" matInput>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="flex flex-col  w-full">
+            <div class="w-full flex flex-col">
+                <div class="flex flex-col sm:flex-row w-full">
+                    <mat-form-field class="w-full sm:w-2/5 pr-0 sm:pr-7"  appearance="outline">
+                        <mat-label>공장 주소</mat-label>
+                        <mat-select [(ngModel)]="fctryAdres" (selectionChange)="changeFctryAdres($event)">
+                            <mat-option [value]=null> =선택= </mat-option>
+                            <ng-container *ngFor="let item of dataAddress">
+                                <mat-option *ngIf="item.entrprsAdresSeCode === 'AC002002'" [value]="item.entrprsAdresSn">{{item.entrprsAdresNm}}</mat-option>
+                            </ng-container>
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="flex flex-col sm:flex-row w-full sm:w-3/5">
+                        <mat-form-field class="w-full sm:w-4/5"  appearance="outline">
+                            <input class="text-black" [(ngModel)]="dataPage.inspectionT.fctryZip" matInput>
+                        </mat-form-field>
+                        <div class="flex justify-end mb-4 sm:mb-0">
+                            <button class="h-13 mt-1 w-22 ml-2 " (click)="zipCodeOpen()" nz-button nzType="defaulty">주소검색</button>
+                            <button class="h-13 mt-1 w-34 ml-2 " (click)="imgBplcSame()" nz-button nzType="defaulty">사업장 주소 동일</button>
+                        </div>
+                    </div>
+                </div>
+
+                <mat-form-field class="w-full sm:w-4/5" appearance="outline">
+                    <input class="text-black" [(ngModel)]="dataPage.inspectionT.fctryBassAdres"  matInput>
+                </mat-form-field>
+
+                <mat-form-field class="w-full sm:w-4/5" appearance="outline">
+                    <input class="text-black" [(ngModel)]="dataPage.inspectionT.fctryDetailAdres"  matInput>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row w-full sm:w-4/5 ">
+            <div class="sm:w-1/2 flex flex-col pr-0 sm:pr-7 ">
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>공장 전화번호</mat-label>
+                    <input class="text-black" [(ngModel)]="dataPage.inspectionT.fctryTelno"  matInput>
+                </mat-form-field>
+            </div>
+            <div class="sm:w-1/2 flex flex-col ">
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>공장 팩스번호</mat-label>
+                     <input class="text-black" [(ngModel)]="dataPage.inspectionT.fctryFxnum" matInput>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</div>

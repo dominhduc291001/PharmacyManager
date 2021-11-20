@@ -1,0 +1,36 @@
+<div class="flex flex-nowrap flex-col sm:flex-row w-full p-2 border border-solid border-blue-300">
+    <div class="p-4 sm:w-1/2 flex flex-col pb-0 sm:pb-4">
+        <mat-form-field class="w-full md:w-3/4" appearance="outline">
+            <mat-label>접수자</mat-label>
+            <input class="text-black" [value]="dataPage?.inspection?.rceptChargerNm" disabled matInput>
+        </mat-form-field>
+
+        <mat-form-field class="w-full md:w-3/4" appearance="outline">
+            <mat-label>검정담당자</mat-label>
+            <input class="text-black" [value]="dataPage?.inspection?.athrzChargerNm" disabled matInput>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="dataPage?.inspection?.athrzProcessSttusCode !== 'AD001007'" class="w-full md:w-3/4"
+            appearance="outline">
+            <mat-label>처리기간</mat-label>
+            <input class="text-black" [value]="dataPage?.inspection?.proprod" disabled matInput>
+        </mat-form-field>
+    </div>
+    <div class="p-4 sm:w-1/2 flex flex-col pt-0 sm:pt-4">
+        <mat-form-field class="w-full md:w-3/4" appearance="outline">
+            <mat-label>접수일자</mat-label>
+            <input class="text-black" [value]="dataPage?.inspection?.rceptDe" disabled matInput>
+        </mat-form-field>
+
+        <mat-form-field class="w-full md:w-3/4" appearance="outline">
+            <mat-label>전화번호</mat-label>
+            <input class="text-black" [value]="dataPage?.inspection?.athrzChargerTelno" disabled matInput>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="dataPage?.inspection?.athrzProcessSttusCode !== 'AD001007'" class="w-full md:w-3/4"
+            appearance="outline">
+            <mat-label>처리기간</mat-label>
+            <input class="text-black" [value]="dataPage?.inspection?.processPrarnDe" disabled matInput>
+        </mat-form-field>
+    </div>
+</div>

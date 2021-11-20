@@ -1,0 +1,17 @@
+<div class="flex flex-nowrap flex-col w-full p-2 border border-solid border-blue-300 px-6">
+    <div class="flex flex-row mb-6 w-full border my-2 border-solid items-center">
+        <p class="p-4 text-center bg-blue-100 flex-none w-30">
+            결과
+        </p>
+        <button (click)="fileDown(dataPage?.formConsentT?.formConsent?.atchmnflT_AC003002?.atchmnflClCode,
+        dataPage?.formConsentT?.formConsent?.atchmnflT_AC003002?.atchmnflCours,
+        dataPage?.formConsentT?.formConsent?.atchmnflT_AC003002?.atchmnflNm)"
+            *ngIf="dataPage?.formConsentT?.formConsent?.atchmnflT_AC003002?.atchmnflNm !== null" class="ml-4" nz-button
+            nzType="default">다운로드</button>
+    </div>
+
+    <mat-form-field class="w-full" appearance="outline">
+        <mat-label>출력일자</mat-label>
+        <input class="text-black" [value]="dataPage?.formConsentT?.fomConfmLastIssu?.outptDe" disabled matInput>
+    </mat-form-field>
+</div>

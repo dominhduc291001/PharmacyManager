@@ -1,0 +1,38 @@
+<div class="flex flex-nowrap flex-col w-full p-2 border border-solid border-blue-300 px-6">
+    <div class="flex flex-row mb-6 w-full border my-2 border-solid">
+        <p class=" p-4 bg-blue-100 flex-none w-30">
+            결과
+        </p>
+        <ng-container *ngIf="dataPage?.formConsentT?.formConsent?.testResultPsexamAt === 'Y'; else elseTemplate">
+            <p class="p-4 flex-grow">합격</p>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <p class="p-4 flex-grow">불합격</p>
+        </ng-template>
+    </div>
+
+    <div class="flex flex-row mb-6 w-full border my-2 border-solid ">
+        <p class=" p-4 bg-blue-100 flex-none w-30">
+            성적서
+        </p>
+        <a class="p-4 " (click)="fileDown(dataPage?.formConsentT?.formConsent?.atchmnflT_AC003020?.atchmnflClCode,
+        dataPage?.formConsentT?.formConsent?.atchmnflT_AC003020?.atchmnflCours,
+        dataPage?.formConsentT?.formConsent?.atchmnflT_AC003020?.atchmnflNm)">
+            {{dataPage?.formConsentT?.formConsent?.atchmnflT_AC003020?.atchmnflNm}}</a>
+    </div>
+
+    <div class="flex flex-row mb-6 w-full border my-2 border-solid ">
+        <p class=" p-4 bg-blue-100 flex-none w-30">
+            기타서류
+        </p>
+        <a class="p-4 " (click)="fileDown(dataPage?.formConsentT?.formConsent?.atchmnflT_AC003021?.atchmnflClCode,
+        dataPage?.formConsentT?.formConsent?.atchmnflT_AC003021?.atchmnflCours,
+        dataPage?.formConsentT?.formConsent?.atchmnflT_AC003021?.atchmnflNm)">
+            {{dataPage?.formConsentT?.formConsent?.atchmnflT_AC003021?.atchmnflNm}}</a>
+    </div>
+
+    <mat-form-field class="w-full" appearance="outline">
+        <mat-label>완료일</mat-label>
+        <input class="text-black" [value]="dataPage?.formConsentT?.formConsent?.testComptDe" disabled matInput>
+    </mat-form-field>
+</div>

@@ -1,0 +1,74 @@
+<div class="container">
+    <nz-spin nzTip="로딩..." [nzSpinning]="isSpin">
+        <div class="flex flex-col flex-nowrap w-full">
+            <div class="flex mt-2 flex-col w-full p-2 border border-solid border-blue-300">
+                <div class="flex flex-row w-full">
+                    <div class="w-full">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label>형식명</mat-label>
+                            <input [value]="dataWeight?.fmsWeightT?.fmsWeight?.fomNm || ''" class="text-black" matInput
+                                disabled>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>등급</mat-label>
+                        <input [value]="dataWeight?.fmsWeightT?.fmsWeight?.gradCodeName || ''" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>구성</mat-label>
+                        <input [value]="dataWeight?.fmsWeightT?.fmsWeight?.tyCodeName || ''" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="flex flex-col flex-nowrap mt-6 w-full">
+            <p class="text-blue-600">
+                <mat-icon class="icon-size-4 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                </mat-icon>
+                낱개 구성
+            </p>
+            <div class="flex mt-2 flex-col w-full p-2 border border-solid border-blue-300">
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>공칭값</mat-label>
+                        <input
+                            [value]="(dataWeight?.fmsWeightT?.fmsWeight?.pceGngchVal || '') + ' ' +
+                            (dataWeight?.fmsWeightT?.fmsWeight?.pceGngchValUnitCodeName || '')"
+                            class="text-black" matInput disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>구조</mat-label>
+                        <input [value]="dataWeight?.fmsWeightT?.fmsWeight?.pceStrctCodeName" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                </div>
+
+                <div class="flex flex-row w-full">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>조정구멍</mat-label>
+                        <input [value]="dataWeight?.fmsWeightT?.fmsWeight?.pceMdatHoleCodeName || ''" class="text-black"
+                            matInput disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>모양</mat-label>
+                        <input [value]="dataWeight?.fmsWeightT?.fmsWeight?.pceShapeCodeName || ''" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="grid mt-6 w-full">
+                <div class="place-self-end">
+                    <button (click)="close()" class="h-10 w-20 -mt-2 ml-2 mb-1" nz-button nzType="primary"
+                        [nzSize]="'small'">닫기</button>
+                </div>
+            </div>
+        </div>
+    </nz-spin>
+</div>

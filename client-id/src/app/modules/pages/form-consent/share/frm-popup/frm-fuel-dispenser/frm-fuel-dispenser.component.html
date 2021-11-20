@@ -1,0 +1,444 @@
+<div class="container">
+    <nz-spin nzTip="로딩..." [nzSpinning]="isSpin">
+        <div class="flex flex-col flex-nowrap w-full mb-6">
+            <p class="text-blue-600">
+                <mat-icon class="icon-size-4 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                </mat-icon>
+                기본정보
+            </p>
+            <div class="flex mt-2 flex-col w-full p-2 border border-solid border-blue-300">
+                <div class="flex flex-row w-full">
+                    <div class="w-full">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>모델명</mat-label>
+                            <input [value]="dataFuelDispenser?.fmsFueldispenserT?.fueldispenserModlCn || ''"
+                                class="text-black" matInput disabled>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full">
+                    <div class="w-1/2 pr-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>형식</mat-label>
+                            <input [value]="dataFuelDispenser?.fmsFueldispenserT?.fomCodeName || ''" class="text-black"
+                                matInput disabled>
+                        </mat-form-field>
+                    </div>
+                    <div class="w-1/2 pl-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>구분</mat-label>
+                            <input [value]="dataFuelDispenser?.fmsFueldispenserT?.seCodeName || ''" class="text-black"
+                                matInput disabled>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full">
+                    <div class="w-1/2 pr-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>최대압력</mat-label>
+                            <input [value]="(dataFuelDispenser?.fmsFueldispenserT?.mxmmPressrValue || '') + ' MPa'"
+                                class="text-black" matInput disabled>
+                        </mat-form-field>
+                    </div>
+                    <div class="w-1/2 pl-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>최소압력</mat-label>
+                            <input [value]="(dataFuelDispenser?.fmsFueldispenserT?.mummPressrVal || '') + ' MPa'"
+                                class="text-black" matInput disabled>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full">
+                    <div class="w-1/2 pr-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>사용온도범위</mat-label>
+                            <input [value]="'(' + (dataFuelDispenser?.fmsFueldispenserT?.useTpScope || '') + ') ℃'"
+                                class="text-black" matInput disabled>
+                        </mat-form-field>
+                    </div>
+                    <div class="w-1/2 pl-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>호스길이</mat-label>
+                            <input [value]="(dataFuelDispenser?.fmsFueldispenserT?.hoseLtValue || '') + ' m'" class="text-black"
+                                matInput disabled>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full">
+                    <div class="w-1/2 pr-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>셀프구분</mat-label>
+                            <input [value]="dataFuelDispenser?.fmsFueldispenserT?.selfSeCodeName || ''" class="text-black"
+                                matInput disabled>
+                        </mat-form-field>
+                    </div>
+                    <div class="w-1/2 pl-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label>제작사</mat-label>
+                            <input [value]="dataFuelDispenser?.fmsFueldispenserT?.makrNm || ''" class="text-black" matInput
+                                disabled>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full">
+                    <div class="w-1/2 pr-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>환경등급</mat-label>
+                            <input [value]="dataFuelDispenser?.fmsFueldispenserT?.envrnGradCodeName || ''" class="text-black"
+                                matInput disabled>
+                        </mat-form-field>
+                    </div>
+                    <div class="w-1/2 pl-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>정밀도 등급</mat-label>
+                            <input [value]="dataFuelDispenser?.fmsFueldispenserT?.prcsdgGradValue || ''" class="text-black"
+                                matInput disabled>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full">
+                    <div class="w-full">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>혼합복식여부</mat-label>
+                            <input *ngIf="dataFuelDispenser?.fmsFueldispenserT?.mxmmFluxRitVal === 0" value="단식"
+                                class="text-black" matInput disabled>
+                            <input *ngIf="dataFuelDispenser?.fmsFueldispenserT?.mxmmFluxRitVal !== 0" value="복식"
+                                class="text-black" matInput disabled>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full">
+                    <div class="w-1/2 pr-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>최대유량 (좌)</mat-label>
+                            <input [value]="(dataFuelDispenser?.fmsFueldispenserT?.mxmmFluxLftVal || '') + ' ' +
+                            (dataFuelDispenser?.fmsFueldispenserT?.mxmmFluxLftValUnitCodeName || '')" class="text-black"
+                                matInput disabled>
+                        </mat-form-field>
+                    </div>
+                    <div class="w-1/2 pl-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>최대유량 (우)</mat-label>
+                            <input [value]="(dataFuelDispenser?.fmsFueldispenserT?.mxmmFluxRitVal || '') + ' ' +
+                            (dataFuelDispenser?.fmsFueldispenserT?.mxmmFluxRitValUnitCodeName || '')"
+                                class="text-black" matInput disabled>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full">
+                    <div class="w-1/2 pr-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>최소유량 (좌)</mat-label>
+                            <input [value]="(dataFuelDispenser?.fmsFueldispenserT?.mummFluxLftVal || '') + ' ' +
+                            (dataFuelDispenser?.fmsFueldispenserT?.mummFluxLftUnitCodeName || '')" class="text-black" matInput
+                                disabled>
+                        </mat-form-field>
+                    </div>
+                    <div class="w-1/2 pl-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>최소유량 (우)</mat-label>
+                            <input [value]="(dataFuelDispenser?.fmsFueldispenserT?.mummFluxRitVal || '') + ' ' +
+                            (dataFuelDispenser?.fmsFueldispenserT?.mummFluxRitUnitCodeName || '')" class="text-black"
+                                matInput disabled>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full">
+                    <div class="w-1/2 pr-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>최소측정량 (좌)</mat-label>
+                            <input [value]="(dataFuelDispenser?.fmsFueldispenserT?.mummMesureQyLftVal || '') + ' L'"
+                                class="text-black" matInput disabled>
+                        </mat-form-field>
+                    </div>
+                    <div class="w-1/2 pl-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>최소측정량 (우)</mat-label>
+                            <input [value]="(dataFuelDispenser?.fmsFueldispenserT?.mummMesureQyRitVal || '') + ' L'"
+                                class="text-black" matInput disabled>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full">
+                    <div class="w-1/2 pr-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label>출구지름 (좌)</mat-label>
+                            <input [value]="(dataFuelDispenser?.fmsFueldispenserT?.extDmLftVal || '') + ' mm'"
+                                class="text-black" matInput disabled>
+                        </mat-form-field>
+                    </div>
+                    <div class="w-1/2 pl-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label>출구지름 (우)</mat-label>
+                            <input [value]="(dataFuelDispenser?.fmsFueldispenserT?.extDmRitVal || '') + ' mm'"
+                                class="text-black" matInput disabled>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full" style="margin-bottom: 18px;">
+                    <div class="flex flex-wrap sm:flex-row w-1/2 mr-1"
+                        style="border: solid thin #CBD5E1; padding: 15px 10px; border-radius: .3em;">
+                        <mat-label class="self-center mb-1 sm:mb-0"><span class="text-red-400">* </span>사용연료 (좌)
+                        </mat-label>
+                        <div class="flex flex-col sm:ml-7">
+                            <label style="margin-left: 8px;"
+                                *ngIf="dataFuelDispenser?.fmsFueldispenserT?.useFuelGslnLftAt === 'Y'" nz-checkbox
+                                nzDisabled [ngModel]="true">휘발유</label>
+                            <label style="margin-left: 8px;"
+                                *ngIf="dataFuelDispenser?.fmsFueldispenserT?.useFuelGslnLftAt !== 'Y'" nz-checkbox
+                                nzDisabled [ngModel]="false">휘발유</label>
+                            <label *ngIf="dataFuelDispenser?.fmsFueldispenserT?.useFuelThrghLftAt === 'Y'" nz-checkbox
+                                nzDisabled [ngModel]="true">경유</label>
+                            <label *ngIf="dataFuelDispenser?.fmsFueldispenserT?.useFuelThrghLftAt !== 'Y'" nz-checkbox
+                                nzDisabled [ngModel]="false">경유</label>
+                            <label *ngIf="dataFuelDispenser?.fmsFueldispenserT?.useFuelKeroLftAt === 'Y'" nz-checkbox
+                                nzDisabled [ngModel]="true">등유</label>
+                            <label *ngIf="dataFuelDispenser?.fmsFueldispenserT?.useFuelKeroLftAt !== 'Y'" nz-checkbox
+                                nzDisabled [ngModel]="false">등유</label>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap sm:flex-row w-1/2 ml-1"
+                        style="border: solid thin #CBD5E1; padding: 15px 10px; border-radius: .3em;">
+                        <mat-label class="self-center mb-1 sm:mb-0"><span class="text-red-400">* </span>사용연료 (우)
+                        </mat-label>
+                        <div class="flex flex-col sm:ml-7">
+                            <label style="margin-left: 8px;"
+                                *ngIf="dataFuelDispenser?.fmsFueldispenserT?.useFuelGslnRitAt !== 'Y'" nz-checkbox
+                                nzDisabled [ngModel]="false">휘발유</label>
+                            <label style="margin-left: 8px;"
+                                *ngIf="dataFuelDispenser?.fmsFueldispenserT?.useFuelThrghRitAt === 'Y'" nz-checkbox
+                                nzDisabled [ngModel]="true">경유</label>
+                            <label *ngIf="dataFuelDispenser?.fmsFueldispenserT?.useFuelThrghRitAt !== 'Y'" nz-checkbox
+                                nzDisabled [ngModel]="false">경유</label>
+                            <label *ngIf="dataFuelDispenser?.fmsFueldispenserT?.useFuelKeroRitAt === 'Y'" nz-checkbox
+                                nzDisabled [ngModel]="true">등유</label>
+                            <label *ngIf="dataFuelDispenser?.fmsFueldispenserT?.useFuelKeroRitAt !== 'Y'" nz-checkbox
+                                nzDisabled [ngModel]="false">등유</label>
+                            <label *ngIf="dataFuelDispenser?.fmsFueldispenserT?.useFuelGslnRitAt === 'Y'" nz-checkbox
+                                nzDisabled [ngModel]="true">휘발유</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full">
+                    <div class="w-1/2 pr-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>소프트웨어버전</mat-label>
+                            <input [value]="dataFuelDispenser?.fmsFueldispenserT?.swVersion || ''" class="text-black" matInput
+                                disabled>
+                        </mat-form-field>
+                    </div>
+                    <div class="w-1/2 pl-1">
+                        <mat-form-field class="w-full" appearance="outline">
+                            <mat-label>해쉬코드</mat-label>
+                            <input [value]="dataFuelDispenser?.fmsFueldispenserT?.swHash || ''" class="text-black" matInput
+                                disabled>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col flex-nowrap w-full">
+            <p class="text-blue-600">
+                <mat-icon class="icon-size-4 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                </mat-icon>
+                추가된 목록 [{{dataFuelDispenser.fmsFueldispenserTList.length}}]
+            </p>
+            <div class="flex mt-2 flex-col w-full p-2 border border-solid border-blue-300">
+                <nz-table class=" w-full" nzFrontPagination="false" [nzScroll]="{ x: '550px' }" nzSize="small"
+                    #basicTable [nzData]="dataFuelDispenser.fmsFueldispenserTList">
+                    <thead>
+                        <tr>
+                            <th class="bg-gray-100 text-center" scope="col">형식</th>
+                            <th class="bg-gray-100 text-center" scope="col">구분</th>
+                            <th class="bg-gray-100 text-center" scope="col">최대압력</th>
+                            <th class="bg-gray-100 text-center" scope="col">최소압력</th>
+                        </tr>
+                        <tr>
+                            <th class="bg-gray-100 text-center" scope="col">사용온도범위</th>
+                            <th class="bg-gray-100 text-center" scope="col">호스길이</th>
+                            <th class="bg-gray-100 text-center" scope="col">셀프구분</th>
+                            <th class="bg-gray-100 text-center" scope="col">제작사</th>
+                        </tr>
+                        <tr>
+                            <th class="bg-gray-100 text-center" scope="col">환경등급</th>
+                            <th class="bg-gray-100 text-center" scope="col">정밀도등급</th>
+                            <th class="bg-gray-100 text-center" scope="col"></th>
+                            <th class="bg-gray-100 text-center" scope="col"></th>
+                        </tr>
+                        <tr>
+                            <th class="bg-gray-100 text-center" scope="col">추가 순번</th>
+                            <th class="bg-gray-100 text-center" scope="col"></th>
+                            <th class="bg-gray-100 text-center" scope="col">모델</th>
+                            <th class="bg-gray-100 text-center" scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <ng-container *ngFor="let data of basicTable.data; let i=index">
+                            <tr>
+                                <td>{{data.fomCodeName}}</td>
+                                <td>{{data.seCodeName}}</td>
+                                <td>{{data.mxmmPressrValue}} MPa</td>
+                                <td>{{data.mummPressrVal}} MPa</td>
+                            </tr>
+                            <tr>
+                                <td>({{data.useTpScope}}) ℃</td>
+                                <td>{{data.hoseLtValue}} m</td>
+                                <td>{{data.selfSeCodeName}}</td>
+                                <td>{{data.makrNm}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{data.envrnGradCodeName}} </td>
+                                <td>{{data.prcsdgGradValue}}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>추가 [{{i+1}}]
+                                    <button (click)="goView(data.fueldispenserSn)" class="" nz-button nzType="primary"
+                                        [nzSize]="'small'">닫기</button>
+                                </td>
+                                <td colspan="3">{{data.fueldispenserModlCn}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <div class="flex flex-col flex-nowrap w-full">
+                                        <div class="flex mt-2 flex-col w-full p-2 border border-solid border-blue-300">
+                                            <div class="flex flex-row w-full">
+                                                <div class="w-1/2 pr-1">
+                                                    <mat-form-field class="w-full" appearance="outline">
+                                                        <mat-label><span class="text-red-400">* </span>최대유량 (좌)
+                                                        </mat-label>
+                                                        <input [value]="(data.mxmmFluxLftVal || '') + ' ' +
+                                                        (data.mxmmFluxLftValUnitCodeName || '')" class="text-black" matInput
+                                                            disabled>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="w-1/2 pl-1">
+                                                    <mat-form-field class="w-full" appearance="outline">
+                                                        <mat-label><span class="text-red-400">* </span>최대유량 (우)
+                                                        </mat-label>
+                                                        <input [value]="(data.mxmmFluxRitVal || '') + ' ' +
+                                                        (data?.mxmmFluxRitValUnitCodeName || '')" class="text-black"
+                                                            matInput disabled>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-row w-full">
+                                                <div class="w-1/2 pr-1">
+                                                    <mat-form-field class="w-full" appearance="outline">
+                                                        <mat-label><span class="text-red-400">* </span>최소유량 (좌)
+                                                        </mat-label>
+                                                        <input [value]="(data.mummFluxLftVal || '') + ' ' +
+                                                        (data.mummFluxLftUnitCodeName || '')" class="text-black" matInput
+                                                            disabled>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="w-1/2 pl-1">
+                                                    <mat-form-field class="w-full" appearance="outline">
+                                                        <mat-label><span class="text-red-400">* </span>최소유량 (우)
+                                                        </mat-label>
+                                                        <input [value]="(data.mummFluxRitVal || '') + ' ' +
+                                                        (data.mummFluxRitUnitCodeName || '')" class="text-black"
+                                                            matInput disabled>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-row w-full">
+                                                <div class="w-1/2 pr-1">
+                                                    <mat-form-field class="w-full" appearance="outline">
+                                                        <mat-label><span class="text-red-400">* </span>최소측정량 (좌)
+                                                        </mat-label>
+                                                        <input [value]="(data.mummMesureQyLftVal || '') + ' L'"
+                                                            class="text-black" matInput disabled>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="w-1/2 pl-1">
+                                                    <mat-form-field class="w-full" appearance="outline">
+                                                        <mat-label><span class="text-red-400">* </span>최소측정량 (우)
+                                                        </mat-label>
+                                                        <input [value]="(data.mummMesureQyRitVal || '') + ' L'"
+                                                            class="text-black" matInput disabled>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-row w-full">
+                                                <div class="w-1/2 pr-1">
+                                                    <mat-form-field class="w-full" appearance="outline">
+                                                        <mat-label>출구지름 (좌)
+                                                        </mat-label>
+                                                        <input [value]="(data.extDmLftVal || '') + ' mm'" class="text-black"
+                                                            matInput disabled>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="w-1/2 pl-1">
+                                                    <mat-form-field class="w-full" appearance="outline">
+                                                        <mat-label>출구지름 (우)
+                                                        </mat-label>
+                                                        <input [value]="(data.extDmRitVal || '') + ' mm'" class="text-black"
+                                                            matInput disabled>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-row w-full" style="margin-bottom: 18px;">
+                                                <div class="flex w-1/2 mr-1 flex-wrap sm:flex-row"
+                                                    style="border: solid thin #CBD5E1; padding: 15px 10px; border-radius: .3em;">
+                                                    <mat-label class="self-center mb-1 sm:mb-0"><span
+                                                            class="text-red-400">* </span>사용연료 (좌)</mat-label>
+                                                    <div class="flex flex-col ml-7">
+                                                        <label style="margin-left: 8px;"
+                                                            *ngIf="data.useFuelGslnLftAt === 'Y'" nz-checkbox nzDisabled
+                                                            [ngModel]="true">휘발유</label>
+                                                        <label style="margin-left: 8px;"
+                                                            *ngIf="data.useFuelGslnLftAt !== 'Y'" nz-checkbox nzDisabled
+                                                            [ngModel]="false">휘발유</label>
+                                                        <label *ngIf="data.useFuelThrghLftAt === 'Y'" nz-checkbox
+                                                            nzDisabled [ngModel]="true">경유</label>
+                                                        <label *ngIf="data.useFuelThrghLftAt !== 'Y'" nz-checkbox
+                                                            nzDisabled [ngModel]="false">경유</label>
+                                                        <label *ngIf="data.useFuelKeroLftAt === 'Y'" nz-checkbox
+                                                            nzDisabled [ngModel]="true">등유</label>
+                                                        <label *ngIf="data.useFuelKeroLftAt !== 'Y'" nz-checkbox
+                                                            nzDisabled [ngModel]="false">등유</label>
+                                                    </div>
+                                                </div>
+                                                <div class="flex w-1/2 ml-1 flex-wrap sm:flex-row"
+                                                    style="border: solid thin #CBD5E1; padding: 15px 10px; border-radius: .3em;">
+                                                    <mat-label class="self-center mb-1 sm:mb-0"><span
+                                                            class="text-red-400">* </span>사용연료 (우)</mat-label>
+                                                    <div class="flex flex-col ml-7">
+                                                        <label style="margin-left: 8px;"
+                                                            *ngIf="data.useFuelGslnRitAt !== 'Y'" nz-checkbox nzDisabled
+                                                            [ngModel]="false">휘발유</label>
+                                                        <label style="margin-left: 8px;"
+                                                            *ngIf="data.useFuelThrghRitAt === 'Y'" nz-checkbox
+                                                            nzDisabled [ngModel]="true">경유</label>
+                                                        <label *ngIf="data.useFuelThrghRitAt !== 'Y'" nz-checkbox
+                                                            nzDisabled [ngModel]="false">경유</label>
+                                                        <label *ngIf="data.useFuelKeroRitAt === 'Y'" nz-checkbox
+                                                            nzDisabled [ngModel]="true">등유</label>
+                                                        <label *ngIf="data.useFuelKeroRitAt !== 'Y'" nz-checkbox
+                                                            nzDisabled [ngModel]="false">등유</label>
+                                                        <label *ngIf="data.useFuelGslnRitAt === 'Y'" nz-checkbox
+                                                            nzDisabled [ngModel]="true">휘발유</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </nz-table>
+            </div>
+        </div>
+
+        <div class="grid mt-6 w-full">
+            <div class="place-self-end">
+                <button (click)="close()" class="h-10 w-20 -mt-2 ml-2 mb-1" nz-button nzType="primary"
+                    [nzSize]="'small'">닫기</button>
+            </div>
+        </div>
+    </nz-spin>
+</div>

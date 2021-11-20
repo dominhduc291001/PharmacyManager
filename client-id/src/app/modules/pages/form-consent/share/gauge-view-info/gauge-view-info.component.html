@@ -1,0 +1,28 @@
+<div class="container w-full border border-solid border-blue-300 sm:p-4">
+    <div class="flex flex-nowrap flex-col w-full p-2">
+        <div class="flex flex-col pb-0 pt-2 sm:pt-0 sm:flex-row w-full">
+            <div class="p-4 md:w-1/2 sm:w-full flex flex-col pl-4 sm:pl-0 pb-0 md:pr-0">
+                <mat-form-field class="w-full md:w-3/4" appearance="outline">
+                    <mat-label>계량기 종류</mat-label>
+                    <input class="text-black" [value]="dataPage?.formConsentT?.formConsent?.mrnrSeName" disabled
+                        matInput>
+                </mat-form-field>
+            </div>
+            <div class="p-4 pb-0 md:w-1/2 sm:w-full flex flex-col pl-4 pr-4 sm:pr-0 pt-0 sm:pt-4 md:pl-0">
+                <mat-form-field class="w-full md:w-3/4" appearance="outline">
+                    <mat-label>대표 모델명</mat-label>
+                    <input class="text-black" [value]="dataPage?.formConsentT?.formConsent?.modelNm" disabled matInput>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="p-4 pt-0 sm:w-1/2 flex flex-col pr-4 pl-4 sm:pl-0 md:pr-0">
+            <div class="flex flex-row md:w-3/4 border my-2 border-solid border-blue-300">
+                <p class="p-4 bg-blue-100">
+                    규격 및 형식
+                </p>
+                <button (click)="showPopup()" class="mt-2.5 ml-6" nz-button nzType="primary">규격 및 형식 조회</button>
+            </div>
+        </div>
+    </div>
+</div>

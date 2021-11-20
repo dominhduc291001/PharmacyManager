@@ -1,0 +1,470 @@
+<div class="container">
+    <nz-spin nzTip="로딩..." [nzSpinning]="isSpin">
+        <div class="flex flex-col flex-nowrap w-full">
+            <p class="text-blue-600">
+                <mat-icon class="icon-size-4 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                </mat-icon>
+                기본정보
+            </p>
+            <div class="flex mt-2 flex-col w-full p-2 border border-solid border-blue-300">
+                <div class="flex flex-col">
+                    <div class="flex flex-col sm:flex-row">
+                        <mat-form-field class="w-full sm:w-1/2"  appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>계량범위</mat-label>
+                            <mat-select (selectionChange)="changeMesur($event)" [(ngModel)]="dataPage.mesurScopeCode">
+                                <mat-option [value]=""> =선택= </mat-option>
+                                <mat-option *ngFor="let item of selectMesurScope" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field *ngIf="mode === 2" class="w-full sm:w-1/2 pl-0 sm:pl-2"  appearance="outline">
+                            <mat-select [(ngModel)]="dataPage.scopeCode">
+                                <mat-option [value]=""> =선택= </mat-option>
+                                <ng-container *ngFor="let item of selectScopeCode">
+                                    <mat-option *ngIf="item !== 'AA104001'"  [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex flex-col sm:flex-row">
+                        <mat-form-field class="w-full sm:w-1/2"  appearance="outline">
+                            <mat-label><span class="text-red-400">* </span>형식</mat-label>
+                            <input [(ngModel)]="dataPage.fomNm" class="text-black" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex p-1 sm:p-2 justify-center ">
+                        <p class="text-red-400 cursor-pointer">듀얼, 트리플레인지 용량 입력시 작은값순으로 ( 싱글 < 듀얼 < 트리플 ) 입력 바랍니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col flex-nowrap mt-6 w-full">
+            <p class="text-blue-600">
+                <mat-icon class="icon-size-4 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                </mat-icon>
+                싱글 (W1)
+            </p>
+            <div class="flex mt-2 flex-col w-full p-2 border border-solid border-blue-300">
+                <div class="flex flex-col sm:flex-row">
+                    <div class="flex flex-col w-full pr-0 sm:pr-2 sm:w-1/2">
+                        <div class="flex flex-row">
+                            <mat-form-field class="w-full"  appearance="outline">
+                                <mat-label><span class="text-red-400">* </span>정확도등급</mat-label>
+                                <mat-select [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[0].accrcyGradCode">
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectAccrcyGrad" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-3/5"  appearance="outline">
+                                <mat-label><span class="text-red-400">* </span>최대용량</mat-label>
+                                <input [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[0].mxmmCpctyVal" type="number" class="text-black" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-2/5 pl-1 sm:pl-2"  appearance="outline">
+                                <mat-select [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[0].mxCpctyValUnitCode">
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectUnit" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-3/5"  appearance="outline">
+                                <mat-label><span class="text-red-400">* </span>검정눈금</mat-label>
+                                <input [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[0].athrzDivisionVal" type="number" class="text-black" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-2/5 pl-1 sm:pl-2"  appearance="outline">
+                                <mat-select [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[0].athrzDvsnValUnitCd" >
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectUnit" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-3/5"  appearance="outline">
+                                <mat-label>실제눈금</mat-label>
+                                <input [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[0].realDivisionVal" type="number" class="text-black" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-2/5 pl-1 sm:pl-2"  appearance="outline">
+                                <mat-select [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[0].realDvsnValUnitCd">
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectUnit" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <nz-divider class="border-purple-300 block sm:hidden -mt-0.5"></nz-divider>
+
+                    <div class="flex flex-col w-full pl-0 sm:pl-2 sm:w-1/2">
+                        <div class="flex flex-row">
+                            <mat-form-field class="w-full"  appearance="outline">
+                                <mat-label>온도범위</mat-label>
+                                <input [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[0].tpScopeText" class="text-black" matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-3/5"  appearance="outline">
+                                <mat-label>최소용량</mat-label>
+                                <input [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[0].mummCpctyVal" type="number" class="text-black" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-2/5 pl-1 sm:pl-2"  appearance="outline">
+                                <mat-select [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[0].mummCpctyValUnitCd">
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectUnit" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-full"  appearance="outline">
+                                <mat-label>검정눈금 수</mat-label>
+                                <input [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[0].athrzDivisionCo" type="number" class="text-black" matInput>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-3/5"  appearance="outline">
+                                <mat-label>용기값</mat-label>
+                                <input [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[0].cntnrNm" class="text-black" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-2/5 pl-1 sm:pl-2"  appearance="outline">
+                                <mat-select [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[0].cntnrNmUnitCode">
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectUnit" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col flex-nowrap mt-6 w-full">
+            <p class="text-blue-600">
+                <mat-icon class="icon-size-4 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                </mat-icon>
+                싱글 (W2)
+            </p>
+            <div class="flex mt-2 flex-col w-full p-2 border border-solid border-blue-300">
+                <div class="flex flex-col sm:flex-row">
+                    <div class="flex flex-col w-full pr-0 sm:pr-2 sm:w-1/2">
+                        <div class="flex flex-row">
+                            <mat-form-field class="w-full"  appearance="outline">
+                                <mat-label><span class="text-red-400">* </span>정확도등급</mat-label>
+                                <mat-select [disabled]="isDisabled1" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[1].accrcyGradCode">
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectAccrcyGrad" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-3/5"  appearance="outline">
+                                <mat-label><span class="text-red-400">* </span>최대용량</mat-label>
+                                <input [disabled]="isDisabled1" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[1].mxmmCpctyVal" type="number" class="text-black" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-2/5 pl-1 sm:pl-2"  appearance="outline">
+                                <mat-select [disabled]="isDisabled1" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[1].mxCpctyValUnitCode">
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectUnit" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-3/5"  appearance="outline">
+                                <mat-label><span class="text-red-400">* </span>검정눈금</mat-label>
+                                <input  [disabled]="isDisabled1" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[1].athrzDivisionVal" type="number" class="text-black" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-2/5 pl-1 sm:pl-2"  appearance="outline">
+                                <mat-select [disabled]="isDisabled1" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[1].athrzDvsnValUnitCd" >
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectUnit" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-3/5"  appearance="outline">
+                                <mat-label>실제눈금</mat-label>
+                                <input [disabled]="isDisabled1" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[1].realDivisionVal" type="number" class="text-black" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-2/5 pl-1 sm:pl-2"  appearance="outline">
+                                <mat-select [disabled]="isDisabled1" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[1].realDvsnValUnitCd">
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectUnit" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <nz-divider class="border-purple-300 block sm:hidden -mt-0.5"></nz-divider>
+
+                    <div class="flex flex-col w-full pl-0 sm:pl-2 sm:w-1/2">
+                        <div class="flex flex-row">
+                            <mat-form-field class="w-full"  appearance="outline">
+                                <mat-label>온도범위</mat-label>
+                                <input [disabled]="isDisabled1" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[1].tpScopeText" class="text-black" matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-3/5"  appearance="outline">
+                                <mat-label>최소용량</mat-label>
+                                <input [disabled]="isDisabled1" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[1].mummCpctyVal" type="number" class="text-black" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-2/5 pl-1 sm:pl-2"  appearance="outline">
+                                <mat-select [disabled]="isDisabled1" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[1].mummCpctyValUnitCd">
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectUnit" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-full"  appearance="outline">
+                                <mat-label>검정눈금 수</mat-label>
+                                <input [disabled]="isDisabled1" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[1].athrzDivisionCo" type="number" class="text-black" matInput>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-3/5"  appearance="outline">
+                                <mat-label>용기값</mat-label>
+                                <input [disabled]="isDisabled1" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[1].cntnrNm" class="text-black" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-2/5 pl-1 sm:pl-2"  appearance="outline">
+                                <mat-select [disabled]="isDisabled1" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[1].cntnrNmUnitCode">
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectUnit" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col flex-nowrap mt-6 w-full">
+            <p class="text-blue-600">
+                <mat-icon class="icon-size-4 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                </mat-icon>
+                트리플
+            </p>
+            <div class="flex mt-2 flex-col w-full p-2 border border-solid border-blue-300">
+                <div class="flex flex-col sm:flex-row">
+                    <div class="flex flex-col w-full pr-0 sm:pr-2 sm:w-1/2">
+                        <div class="flex flex-row">
+                            <mat-form-field class="w-full"  appearance="outline">
+                                <mat-label><span class="text-red-400">* </span>정확도등급</mat-label>
+                                <mat-select [disabled]="isDisabled2" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[2].accrcyGradCode">
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectAccrcyGrad" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-3/5"  appearance="outline">
+                                <mat-label><span class="text-red-400">* </span>최대용량</mat-label>
+                                <input [disabled]="isDisabled2" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[2].mxmmCpctyVal" type="number" class="text-black" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-2/5 pl-1 sm:pl-2"  appearance="outline">
+                                <mat-select [disabled]="isDisabled2" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[2].mxCpctyValUnitCode">
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectUnit" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-3/5"  appearance="outline">
+                                <mat-label><span class="text-red-400">* </span>검정눈금</mat-label>
+                                <input  [disabled]="isDisabled2" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[2].athrzDivisionVal" type="number" class="text-black" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-2/5 pl-1 sm:pl-2"  appearance="outline">
+                                <mat-select [disabled]="isDisabled2" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[2].athrzDvsnValUnitCd" >
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectUnit" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-3/5"  appearance="outline">
+                                <mat-label>실제눈금</mat-label>
+                                <input [disabled]="isDisabled2" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[2].realDivisionVal" type="number" class="text-black" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-2/5 pl-1 sm:pl-2"  appearance="outline">
+                                <mat-select [disabled]="isDisabled2" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[2].realDvsnValUnitCd">
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectUnit" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <nz-divider class="border-purple-300 block sm:hidden -mt-0.5"></nz-divider>
+
+                    <div class="flex flex-col w-full pl-0 sm:pl-2 sm:w-1/2">
+                        <div class="flex flex-row">
+                            <mat-form-field class="w-full"  appearance="outline">
+                                <mat-label>온도범위</mat-label>
+                                <input [disabled]="isDisabled2" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[2].tpScopeText" class="text-black" matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-3/5"  appearance="outline">
+                                <mat-label>최소용량</mat-label>
+                                <input [disabled]="isDisabled2" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[2].mummCpctyVal" type="number" class="text-black" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-2/5 pl-1 sm:pl-2"  appearance="outline">
+                                <mat-select [disabled]="isDisabled2" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[2].mummCpctyValUnitCd">
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectUnit" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-full"  appearance="outline">
+                                <mat-label>검정눈금 수</mat-label>
+                                <input [disabled]="isDisabled2" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[2].athrzDivisionCo" type="number" class="text-black" matInput>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="flex flex-row w-full">
+                            <mat-form-field class="w-3/5"  appearance="outline">
+                                <mat-label>용기값</mat-label>
+                                <input [disabled]="isDisabled2" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[2].cntnrNm" class="text-black" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field class="w-2/5 pl-1 sm:pl-2"  appearance="outline">
+                                <mat-select [disabled]="isDisabled2" [(ngModel)]="dataPage.iptEltrnPrcsBlDetailListT[2].cntnrNmUnitCode">
+                                    <mat-option [value]=""> =선택= </mat-option>
+                                    <mat-option *ngFor="let item of selectUnit" [value]="item.bsisCode">{{item.bsisCodeNm}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex p-1 sm:p-2 justify-end ">
+            <button (click)="clear()" class="h-10 w-20 ml-2 -mt-3 sm:-mt-0 mb-1" nz-button nzType="defaulty" [nzSize]="'small'">깨끗한</button>
+            <button (click)="saveData()" class="h-10 w-20 ml-2 mb-1" nz-button nzType="defaulty" [nzSize]="'small'">추가</button>
+        </div>
+        <nz-divider class="border-purple-300 block sm:hidden -mt-0.5"></nz-divider>
+        <div class="flex flex-col flex-nowrap mt-6 w-full">
+            <p class="text-blue-600">
+                <mat-icon class="icon-size-4 text-blue-600" svgIcon="heroicons_outline:arrow-circle-right">
+                </mat-icon>
+                추가된 목록
+            </p>
+            <div class="flex mt-2 flex-col w-full p-2 border border-solid border-blue-300">
+                <nz-table class=" w-full" nzFrontPagination="false"
+                    [nzScroll]="{ x: '550px' }" nzSize="small"
+                     #basicTable [nzData]="dataElectronic">
+                <thead>
+                    <tr>
+                        <th class="bg-gray-100 text-center" scope="col" rowspan="3">No</th>
+                        <th class="bg-gray-100 text-center" scope="col">계량범위</th>
+                        <th class="bg-gray-100 text-center" scope="col">형식</th>
+                        <th class="bg-gray-100 text-center" scope="col"></th>
+                        <th class="bg-gray-100 text-center" scope="col"></th>
+                    </tr>
+                    <tr>
+                        <th class="bg-gray-100 text-center" scope="col">정확도등급</th>
+                        <th class="bg-gray-100 text-center" scope="col">온도범위</th>
+                        <th class="bg-gray-100 text-center" scope="col">최대용량</th>
+                        <th class="bg-gray-100 text-center" scope="col">최소용량</th>
+                    </tr>
+                    <tr>
+                        <th class="bg-gray-100 text-center" scope="col">검정눈금</th>
+                        <th class="bg-gray-100 text-center" scope="col">검정눈금수</th>
+                        <th class="bg-gray-100 text-center" scope="col">실제눈금</th>
+                        <th class="bg-gray-100 text-center" scope="col">용기값</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                  <ng-container *ngFor="let data of basicTable.data; let i=index">
+                      <tr>
+                          <td rowspan="3">
+                              {{i+1}} <br/>
+                              <button (click)="editData(data)" class="mt-2" nz-button nzType="primary">수정</button> <br/>
+                             <button (click)="deleteData(data)"  class="mt-2" nz-button nzType="primary">삭제</button>
+                            </td>
+                          <td>{{data.mesurScopeCodeName}}[{{data.scopeCodeName}}]</td>
+                          <td>{{data.fomNm}}</td>
+                          <td></td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td>
+                              [{{data.iptEltrnPrcsBlDetailListT[0].accrcyGradCodeName}}]
+                              [{{data.iptEltrnPrcsBlDetailListT[1].accrcyGradCodeName}}]
+                              [{{data.iptEltrnPrcsBlDetailListT[2].accrcyGradCodeName}}]
+                          </td>
+                          <td>
+                            [{{data.iptEltrnPrcsBlDetailListT[0].tpScopeText}}]
+                            [{{data.iptEltrnPrcsBlDetailListT[1].tpScopeText}}]
+                            [{{data.iptEltrnPrcsBlDetailListT[2].tpScopeText}}]
+                          </td>
+                          <td>
+                            [{{data.iptEltrnPrcsBlDetailListT[0].mxmmCpctyVal}}]
+                            [{{data.iptEltrnPrcsBlDetailListT[1].mxmmCpctyVal}}]
+                            [{{data.iptEltrnPrcsBlDetailListT[2].mxmmCpctyVal}}]
+                          </td>
+                          <td>
+                            [{{data.iptEltrnPrcsBlDetailListT[0].mummCpctyVal}}]
+                            [{{data.iptEltrnPrcsBlDetailListT[1].mummCpctyVal}}]
+                            [{{data.iptEltrnPrcsBlDetailListT[2].mummCpctyVal}}]
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                            [{{data.iptEltrnPrcsBlDetailListT[0].athrzDivisionVal}}{{data.iptEltrnPrcsBlDetailListT[0].athrzDvsnValUnitCdName}}]
+                            [{{data.iptEltrnPrcsBlDetailListT[1].athrzDivisionVal}}{{data.iptEltrnPrcsBlDetailListT[1].athrzDvsnValUnitCdName}}]
+                            [{{data.iptEltrnPrcsBlDetailListT[2].athrzDivisionVal}}{{data.iptEltrnPrcsBlDetailListT[2].athrzDvsnValUnitCdName}}]
+                          </td>
+                          <td>
+                            [{{data.iptEltrnPrcsBlDetailListT[0].athrzDivisionCo}}]
+                            [{{data.iptEltrnPrcsBlDetailListT[1].athrzDivisionCo}}]
+                            [{{data.iptEltrnPrcsBlDetailListT[2].athrzDivisionCo}}]
+                          </td>
+                          <td>
+                            [{{data.iptEltrnPrcsBlDetailListT[0].realDivisionVal}}{{data.iptEltrnPrcsBlDetailListT[0].realDvsnValUnitCdName}}]
+                            [{{data.iptEltrnPrcsBlDetailListT[1].realDivisionVal}}{{data.iptEltrnPrcsBlDetailListT[1].realDvsnValUnitCdName}}]
+                            [{{data.iptEltrnPrcsBlDetailListT[2].realDivisionVal}}{{data.iptEltrnPrcsBlDetailListT[2].realDvsnValUnitCdName}}]
+                          </td>
+                          <td>
+                            [{{data.iptEltrnPrcsBlDetailListT[0].cntnrNm}}{{data.iptEltrnPrcsBlDetailListT[0].cntnrNmUnitCodeName}}]
+                            [{{data.iptEltrnPrcsBlDetailListT[1].cntnrNm}}{{data.iptEltrnPrcsBlDetailListT[1].cntnrNmUnitCodeName}}]
+                            [{{data.iptEltrnPrcsBlDetailListT[2].cntnrNm}}{{data.iptEltrnPrcsBlDetailListT[2].cntnrNmUnitCodeName}}]
+                          </td>
+                      </tr>
+                  </ng-container>
+                </tbody>
+              </nz-table>
+            </div>
+            <div class="grid mt-6 w-full">
+                <div class="place-self-end">
+                    <button (click)="saveConfirm()" class="h-10 w-20 -mt-2 ml-2 mb-1" nz-button nzType="primary" [nzSize]="'small'">저장</button>
+                    <button (click)="close()" class="h-10 w-20 -mt-2 ml-2 mb-1" nz-button nzType="primary" [nzSize]="'small'">닫기</button>
+                </div>
+            </div>
+        </div>
+    </nz-spin>
+</div>

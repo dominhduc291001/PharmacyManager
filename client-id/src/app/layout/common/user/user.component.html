@@ -1,0 +1,20 @@
+<!-- Button -->
+<button
+    mat-icon-button
+    [matMenuTriggerFor]="userActions">
+    <span class="relative">
+        <mat-icon
+            [svgIcon]="'heroicons_outline:user-circle'"></mat-icon>
+    </span>
+</button>
+
+<mat-menu
+    [xPosition]="'before'"
+    #userActions="matMenu">
+    <button
+        mat-menu-item
+        (click)="signOut()">
+        <mat-icon [svgIcon]="'heroicons_outline:logout'"></mat-icon>
+        <span>로그아웃</span>
+    </button>
+</mat-menu>

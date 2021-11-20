@@ -1,0 +1,151 @@
+<div class="container">
+    <nz-spin nzTip="로딩..." [nzSpinning]="isSpin">
+        <div class="flex flex-col flex-nowrap w-full">
+            <div class="flex mt-2 flex-col w-full p-2 border border-solid border-blue-300">
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>형식 구분</mat-label>
+                        <input [value]="dataElecmeter?.fmsElecmeterT?.fomCodeName || ''" class="text-black" matInput disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>계기구분</mat-label>
+                        <input [value]="dataElecmeter?.fmsElecmeterT?.estbSeCodeName || ''" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>상및 선식</mat-label>
+                        <input [value]="dataElecmeter?.fmsElecmeterT?.upptNdLnFrmlaCodeName || ''" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>기준전압</mat-label>
+                        <input [value]="(dataElecmeter?.fmsElecmeterT?.stdrVltgeCodeName || '') + ' V'" class="text-black"
+                            matInput disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>기준전류</mat-label>
+                        <input [value]="(dataElecmeter?.fmsElecmeterT?.stdrErcrtCodeName || '') + ' A'" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>최대허용 전류</mat-label>
+                        <input [value]="(dataElecmeter?.fmsElecmeterT?.mxmmPermErcrtVal || '') + ' A'" class="text-black"
+                            matInput disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>승인서 전류표기 값</mat-label>
+                        <input [value]="(dataElecmeter?.fmsElecmeterT?.printErcrtVal || '')" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>기준 주파수</mat-label>
+                        <input [value]="(dataElecmeter?.fmsElecmeterT?.sdfncCode || '') + ' Hz'" class="text-black" matInput
+                            disabled>
+                        <input *ngIf="dataElecmeter?.fmsElecmeterT?.fluxAsstnSuplySrcelctValue === null" value=""
+                            class="text-black" matInput disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>유효등급</mat-label>
+                        <input *ngIf="dataElecmeter?.fmsElecmeterT?.validGradCodeName !== 'AA216005'"
+                            [value]="(dataElecmeter?.fmsElecmeterT?.validGradCodeName || '') + ' 급'" class="text-black" matInput
+                            disabled>
+                        <input *ngIf="dataElecmeter?.fmsElecmeterT?.validGradCodeName === 'AA216005'"
+                            [value]="(dataElecmeter?.fmsElecmeterT?.validGradCodeName || '')" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label>유효계기정수</mat-label>
+                        <input [value]="(dataElecmeter?.fmsElecmeterT?.validSmEstbCoVal || '') + ' ' +
+                        (dataElecmeter?.fmsElecmeterT?.validSmEstbUnitCodeName || '')" class="text-black" matInput disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>무효등급</mat-label>
+                        <input *ngIf="dataElecmeter?.fmsElecmeterT?.unavblGradCodeName !== 'AA217003'"
+                            [value]="(dataElecmeter?.fmsElecmeterT?.unavblGradCodeName || '') + ' 급'" class="text-black"
+                            matInput disabled>
+                        <input *ngIf="dataElecmeter?.fmsElecmeterT?.unavblGradCodeName === 'AA217003'"
+                            [value]="(dataElecmeter?.fmsElecmeterT?.unavblGradCodeName || '')" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label>무효계기정수</mat-label>
+                        <input [value]="(dataElecmeter?.fmsElecmeterT?.unavblSmEstbCoVal || '') + ' ' +
+                        (dataElecmeter?.fmsElecmeterT?.unavblSmEstbCoValUnitCdName || '')" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>사용환경에따른 정수</mat-label>
+                        <input [value]="dataElecmeter?.fmsElecmeterT?.useEnvrnIntgrCodeName || ''" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>정격최대수요시한</mat-label>
+                        <input *ngIf="dataElecmeter?.fmsElecmeterT?.ratingMxmmAceptncLmpdValue !== null"
+                            [value]="(dataElecmeter?.fmsElecmeterT?.ratingMxmmAceptncLmpdValue || '') + ' 분'" class="text-black"
+                            matInput disabled>
+                        <input *ngIf="dataElecmeter?.fmsElecmeterT?.ratingMxmmAceptncLmpdValue === null"
+                            [value]="dataElecmeter?.fmsElecmeterT?.ratingMxmmAceptncLmpdValue || ''" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>계량방향</mat-label>
+                        <input [value]="dataElecmeter?.fmsElecmeterT?.mesurDrcCodeName || ''" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>형식명</mat-label>
+                        <input [value]="dataElecmeter?.fmsElecmeterT?.fomNm || ''" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-1/2 pr-1" appearance="outline">
+                        <mat-label><span class="text-red-400">* </span>접속구조</mat-label>
+                        <input [value]="dataElecmeter?.fmsElecmeterT?.conectStrctCodeName || ''" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                    <mat-form-field class="w-1/2 pl-1" appearance="outline">
+                        <mat-label>SW버전</mat-label>
+                        <input [value]="dataElecmeter?.fmsElecmeterT?.swVersion || ''" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-full" appearance="outline">
+                        <mat-label>검정 유효기간에 따른 분류</mat-label>
+                        <input [value]="dataElecmeter?.fmsElecmeterT?.athrzValidPdVal || ''" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                </div>
+                <div class="flex flex-row">
+                    <mat-form-field class="w-full" appearance="outline">
+                        <mat-label>기타사항</mat-label>
+                        <input [value]="dataElecmeter?.fmsElecmeterT?.etcMatterCn || ''" class="text-black" matInput
+                            disabled>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid mt-6 w-full">
+            <div class="place-self-end">
+                <button (click)="close()" class="h-10 w-20 -mt-2 ml-2 mb-1" nz-button nzType="primary"
+                    [nzSize]="'small'">닫기</button>
+            </div>
+        </div>
+    </nz-spin>
+</div>

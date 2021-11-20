@@ -1,0 +1,38 @@
+<div class="w-full mt-2 border border-solid border-blue-300 overflow-x-auto">
+    <nz-table class=" w-full" nzFrontPagination="false"
+    [nzScroll]="{ x: '750px' }" nzSize="small"
+    #basicTable [nzData]="dataTable">
+        <thead>
+          <tr>
+            <th class="bg-gray-100 text-center w-20">No.</th>
+            <th class="bg-gray-100 text-center">계량기명</th>
+            <th class="bg-gray-100 text-center">형식승인번호</th>
+            <th class="bg-gray-100 text-center">규격</th>
+            <th class="bg-gray-100 text-center">검정구분</th>
+            <th class="bg-gray-100 text-center w-20">수량</th>
+            <th class="bg-gray-100 text-center w-20">합격</th>
+            <th class="bg-gray-100 text-center w-20">불합격</th>
+            <th class="bg-gray-100 text-center w-52">검정일</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr *ngFor="let data of basicTable.data">
+                <td>{{data.athrzDetailSn}}</td>
+                <td>{{data.mrnrSeNm}}</td>
+                <td>{{data.fomConfmConfmNo}}</td>
+                <td>{{data.stndrdNm}}</td>
+                <td>{{data.athrzSeCodeName}}</td>
+                <td>
+                    <span *ngIf="data.reqstQy !== null; else nullQy">
+                        {{data.reqstQy}}
+                    </span>
+                    <ng-template #nullQy>0</ng-template>
+
+                </td>
+                <td>{{data.psexamQy}}</td>
+                <td>{{data.dsqlfcQy}}</td>
+                <td>{{data.athrzBgnDe}} ~ {{data.athrzEndDe}}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>

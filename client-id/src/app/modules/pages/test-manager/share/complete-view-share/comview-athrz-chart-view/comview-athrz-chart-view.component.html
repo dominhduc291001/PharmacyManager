@@ -1,0 +1,29 @@
+<div class="flex flex-col sm:flex-row flex-wrap w-full border border-solid border-blue-300 mt-2">
+    <div class="flex items-center bg-blue-100">
+        <p class="p-4 w-full sm:w-30">검정기록지</p>
+    </div>
+    <div class="p-2 flex flex-col">
+        <div *ngFor="let item of dataPage?.inspection?.atchmnflT_AC003024" class="grid grid-cols-3 my-1 gap-4">
+            <a class="col-span-2">{{item?.atchmnflNm}}</a>
+            <button (click)="fileDown(item?.atchmnflClCode, item?.atchmnflCours, item?.atchmnflNm)" nz-button
+                nzType="primary">다운로드</button>
+        </div>
+    </div>
+</div>
+<div class="flex flex-col sm:flex-row flex-wrap w-full border border-solid border-blue-300 mt-2">
+    <div class="bg-blue-100">
+        <p class="p-4 w-full sm:w-30">기타</p>
+    </div>
+    <div class="p-2 flex flex-col">
+        <div class="grid grid-cols-3 my-1 gap-4">
+            <p *ngIf="dataPage?.inspection?.atchmnflT_AC003025?.atchmnflNm === null">미등록</p>
+            <a *ngIf="dataPage?.inspection?.atchmnflT_AC003025?.atchmnflNm !== null"
+                class="col-span-2">{{dataPage?.inspection?.atchmnflT_AC003025?.atchmnflNm}}</a>
+            <button
+                (click)="fileDown(dataPage?.inspection.atchmnflT_AC003025.atchmnflClCode,
+                    dataPage?.inspection?.atchmnflT_AC003025?.atchmnflCours, dataPage?.inspection?.atchmnflT_AC003025?.atchmnflNm)"
+                *ngIf="dataPage?.inspection?.atchmnflT_AC003025?.atchmnflNm !== null" nz-button nzType="primary">다운로드
+            </button>
+        </div>
+    </div>
+</div>

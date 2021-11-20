@@ -1,0 +1,37 @@
+<div [hidden]="!hasDevices">
+    <mat-form-field appearance="fill" class="w-60">
+        <mat-select [value]="deviceSelected" (valueChange)="onDeviceSelectChange($event)">
+            <mat-option value="">장치 없음</mat-option>
+            <mat-option *ngFor="let device of availableDevices" [value]="device?.deviceId">{{device?.label}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <zxing-scanner [device]="deviceCurrent" (deviceChange)="onDeviceChange($event)" (scanSuccess)="onCodeResult($event)"
+        [formats]="formatsEnabled" (permissionResponse)="onHasPermission($event)"
+        (camerasFound)="onCamerasFound($event)"></zxing-scanner>
+</div>
+
+<ng-container *ngIf="hasPermission === undefined">
+    <h2>권한을 기다리고 있습니다.</h2>
+    <blockquote>
+        장치에 카메라가 없으면 권한을 묻지 않습니다.
+    </blockquote>
+</ng-container>
+
+<ng-container *ngIf="hasPermission === false">
+    <h2>카메라 권한을 거부했습니다. 카메라 권한 없이는 아무것도 스캔할 수 없습니다.</h2>
+</ng-container>
+
+<ng-container *ngIf="hasDevices === undefined">
+    <h2>기기를 확인할 수 없습니다.</h2>
+    <blockquote>
+        이것은 일부 보안 오류로 인해 발생할 수 있습니다.
+    </blockquote>
+</ng-container>
+
+<ng-container *ngIf="hasDevices === false">
+    <h2>장치를 찾을 수 없습니다.</h2>
+    <blockquote>
+        장치에 연결된 미디어 장치가 없는 것 같습니다.
+    </blockquote>
+</ng-container>

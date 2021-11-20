@@ -1,0 +1,59 @@
+<div class="container w-full">
+    <nz-spin [nzSpinning]="isSpinning"  nzTip="로딩...">
+        <ul class="flex justify-between border-b-2 text-xs sm:text-md">
+            <li class="-mb-px mr-1">
+                <a
+                    class="bg-white dark:bg-gray-900 inline-block border-l border-t border-r rounded-t pb-2 pt-3 px-4 text-blue-700 font-semibold">QR코드
+                    조회</a>
+            </li>
+            <li>
+                <nz-breadcrumb [nzSeparator]="null" class="inline-block pb-2 pt-3 px-4 font-semibold">
+                    <nz-breadcrumb-item class="text-gray-400">QR코드 관리</nz-breadcrumb-item>
+                    <nz-breadcrumb-separator class="mx-2 text-gray-400">></nz-breadcrumb-separator>
+                    <nz-breadcrumb-item class="text-blue-700">QR코드 조회</nz-breadcrumb-item>
+                </nz-breadcrumb>
+            </li>
+        </ul>
+
+        <div class="flex flex-col flex-nowrap flex-auto bg-white  dark:bg-gray-800 min-h-full w-full">
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600 mr-1 mt-2">
+                    <mat-icon class="icon-size-4 text-blue-600 mr-1" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>업체정보
+                </p>
+                <qrcode-entrps-info-view [dataPage]="dataMain" class="pt-2"></qrcode-entrps-info-view>
+            </div>
+
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600 mr-1">
+                    <mat-icon class="icon-size-4 text-blue-600 mr-1" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>검정결과 정보
+                </p>
+                <qrcode-athrz-detail-view [dataPage]="dataDetailView?.qrCodeInfoViewNow" class="pt-2"></qrcode-athrz-detail-view>
+            </div>
+
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <qrcode-athrz-detail-view [dataPage]="dataDetailView?.qrCodeInfoViewPre" class="pt-2"></qrcode-athrz-detail-view>
+            </div>
+
+            <div class="flex flex-col flex-nowrap p-2 md:p-4 w-full">
+                <p class="text-blue-600 mr-1">
+                    <mat-icon class="icon-size-4 text-blue-600 mr-1" svgIcon="heroicons_outline:arrow-circle-right">
+                    </mat-icon>접수/담당정보
+                </p>
+                <qrcode-proc-state [dataPage]="dataMain" class="pt-2"></qrcode-proc-state>
+            </div>
+
+            <div class="grid w-full mb-10 mt-2">
+                <div class="flex place-self-end">
+                    <div class="mr-5">
+                        <button routerLink="/KTC/QrManager/QrInfo/status/edit/{{dataMain?.inspection?.athrzSn}}" mat-raised-button color="primary">수정</button>
+                    </div>
+                    <div class="sm:mr-14 mr-6">
+                        <button routerLink="/KTC/QrManager/QrInfo/status" mat-raised-button color="primary">목록</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nz-spin>
+</div>

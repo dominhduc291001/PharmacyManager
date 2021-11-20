@@ -1,0 +1,33 @@
+<div class="w-full mt-2 border border-solid border-blue-300 overflow-x-auto">
+    <nz-table class="w-full" nzFrontPagination="false"
+    [nzScroll]="reponsiveTable()" nzSize="small"
+    #basicTable [nzData]="dataTable">
+        <thead>
+          <tr>
+            <th class="bg-gray-100 text-center">No.</th>
+            <th class="bg-gray-100 text-center">구분</th>
+            <th class="bg-gray-100 text-center">처리내용</th>
+            <th class="bg-gray-100 text-center">담당자</th>
+            <th class="bg-gray-100 text-center">변경일시</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr *ngFor="let data of basicTable.data">
+              <td>{{data.rowNumber}}</td>
+              <td>{{data.athrzProgressCodeName}}</td>
+              <td>{{data.processCn}}</td>
+              <td>
+                 <div *ngIf="data.athrzProgressCode !== 'AD002002'">
+                      {{data.ktcChargerNm}}
+                      {{data.ktcChargerDeptNm}}
+                 </div>
+                  <div *ngIf="data.applcntNm !== null">
+                    {{data.applcntNm}}
+                    ({{data.applcntId}})
+                  </div>
+              </td>
+              <td>{{data.registDt |date: 'M/d/yy h:mm:ss a'}}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+</div>

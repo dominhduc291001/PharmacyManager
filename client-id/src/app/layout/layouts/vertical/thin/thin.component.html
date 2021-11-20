@@ -1,0 +1,78 @@
+<!-- Navigation -->
+<fuse-vertical-navigation
+    class="light bg-white print:hidden text-xl font-bold"
+    [appearance]="navigationAppearance"
+    (mouseenter)="openHoverLogo()"
+    (mouseleave)="closeHoverLogo()"
+    [mode]="isScreenSmall ? 'over' : 'side'"
+    [name]="'mainNavigation'"
+    [navigation]="navigation.default"
+    [opened]="!isScreenSmall">
+    <!-- Navigation header hook -->
+    <ng-container fuseVerticalNavigationContentHeader>
+        <div *ngIf="isOpen === false && navigationAppearance !=='default'"  class="flex items-center p-4 justify-center h-13">
+        </div>
+        <!-- Logo -->
+        <div *ngIf="isOpen === true || isScreenSmall || navigationAppearance ==='default'"  class="flex items-center p-4 justify-center h-20">
+            <img  class="p-4"
+            routerLink="/KTC"
+            src="assets/images/logo/logo-main.png"
+            alt="Logo image">
+        </div>
+        <hr *ngIf="isOpen === true || isScreenSmall || navigationAppearance ==='default'" style="color: gray;"/>
+    </ng-container>
+</fuse-vertical-navigation>
+
+<!-- Wrapper -->
+<div class="flex flex-col flex-auto w-full min-w-0">
+
+    <!-- Header -->
+    <div class="relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-49 shadow dark:shadow-none dark:border-b bg-card dark:bg-transparent print:hidden">
+        <div class="flex items-center pr-2 space-x-2">
+            <!-- Navigation toggle button -->
+            <button
+                class="inline-flex md:hidden"
+                mat-icon-button
+                (click)="toggleNavigation('mainNavigation')">
+                <mat-icon [svgIcon]="'heroicons_outline:menu'"></mat-icon>
+            </button>
+
+            <button
+                class="hidden md:inline-flex"
+                mat-icon-button
+                (click)="toggleNavigationAppearance()">
+                <mat-icon [svgIcon]="'heroicons_outline:menu'"></mat-icon>
+            </button>
+
+            <fuse-horizontal-navigation
+                class="hidden md:inline-flex text-xl font-black"
+                [name]="'topNavigation'"
+                 [navigation]="navigation.default">
+            </fuse-horizontal-navigation>
+            <!-- Navigation appearance toggle button -->
+            <!-- <button
+                class="hidden md:inline-flex"
+                mat-icon-button
+                (click)="toggleNavigationAppearance()">
+                <mat-icon [svgIcon]="'heroicons_outline:switch-horizontal'"></mat-icon>
+            </button> -->
+        </div>
+        <!-- Components -->
+        <div class="flex items-center pl-2 ml-auto space-x-1 sm:space-x-2">
+            <user></user>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="flex flex-col flex-auto max-w-full flex-nowrap">
+        <!-- *ngIf="true" hack is required here for router-outlet to work correctly.
+             Otherwise, layout changes won't be registered and the view won't be updated! -->
+        <router-outlet *ngIf="true"></router-outlet>
+    </div>
+
+    <!-- Footer -->
+    <div class="relative flex flex-0 items-center justify-center w-full  h-14 px-4 md:px-6 z-49 border-t bg-card dark:bg-transparent print:hidden">
+        <span class="font-medium text-center"> <span style="color: #F48929;">KTC</span> 2021 </span>
+    </div>
+
+</div>

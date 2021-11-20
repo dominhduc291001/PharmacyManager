@@ -1,0 +1,147 @@
+<div class="container w-full">
+        <ul class="flex justify-between border-b text-xs sm:text-md">
+            <li class="-mb-px mr-1">
+                <a
+                    class="bg-white dark:bg-gray-900 inline-block border-l border-t border-r rounded-t pb-2 pt-3 px-4 text-blue-700 font-semibold">QR코드
+                    이력조회</a>
+            </li>
+            <li>
+                <nz-breadcrumb [nzSeparator]="null" class="inline-block pb-2 pt-3 px-4 font-semibold">
+                    <nz-breadcrumb-item class="text-gray-400">QR코드 관리</nz-breadcrumb-item>
+                    <nz-breadcrumb-separator class="mx-2 text-gray-400">></nz-breadcrumb-separator>
+                    <nz-breadcrumb-item class="text-blue-700">QR코드 이력조회</nz-breadcrumb-item>
+                </nz-breadcrumb>
+            </li>
+        </ul>
+
+        <div class="flex flex-col flex-auto bg-white  dark:bg-gray-800 min-h-full">
+            <div class="flex flex-col sm:flex-row dark:bg-gray-900 border border-solid">
+                <div class="w-full sm:w-1/2">
+                    <div class="p-4 w-full md:w-2/3 m-auto pb-0 md:pb-4">
+                        <div class="flex flex-row">
+                            <h1 class="p-2 w-28 flex-none self-center">계량기 종류</h1>
+                            <div class="p-2 flex-1 sm:flex-grow">
+                                <nz-select [(ngModel)]="searchRq.mrnrSeCode" class="w-full">
+                                    <nz-option nzValue='' nzLabel=""></nz-option>
+                                    <nz-option *ngFor="let item of selectItem?.mrnrSeCodeList" [nzValue]="item?.bsisCode"
+                                        [nzLabel]="item?.bsisCodeNm"></nz-option>
+                                </nz-select>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row">
+                            <h1 class="p-2 w-28 flex-none self-center">검정신청지사</h1>
+                            <div class="p-2 flex-1 sm:flex-grow">
+                                <nz-select [(ngModel)]="searchRq.ktcBrffcCode" class="w-full">
+                                    <nz-option nzValue='' nzLabel=""></nz-option>
+                                    <nz-option *ngFor="let item of selectItem?.ktcBrffcCodeList"
+                                        [nzValue]="item?.bsisCode" [nzLabel]="item?.bsisCodeNm"></nz-option>
+                                </nz-select>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row">
+                            <h1 class=" p-2 w-28 flex-none self-center">접수번호</h1>
+                            <div class="p-2 flex-1 sm:flex-grow">
+                                <input [(ngModel)]="searchRq.athrzRceptNo" nz-input />
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row">
+                            <h1 class=" p-2 w-28 flex-none self-center">완료일</h1>
+                            <div class="p-2 flex-1 sm:flex-grow">
+                                <nz-range-picker [(ngModel)]="athrzEndDe" class="w-full"></nz-range-picker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full sm:w-1/2 self-center">
+                    <div class="p-4 w-full md:w-2/3 m-auto pt-0 md:pt-4">
+                        <div class="flex flex-row">
+                            <h1 class=" p-2 w-28 flex-none self-center">구분</h1>
+                            <div class="p-2 flex-1 sm:flex-grow">
+                                <nz-select [(ngModel)]="searchRq.athrzSeCode" class="w-full">
+                                    <nz-option nzValue='' nzLabel=""></nz-option>
+                                    <nz-option *ngFor="let item of selectItem?.athrzSeCodeList"
+                                        [nzValue]="item?.bsisCode" [nzLabel]="item?.bsisCodeNm"></nz-option>
+                                </nz-select>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row">
+                            <h1 class=" p-2 w-28 flex-none self-center">검정담당자</h1>
+                            <div class="p-2 flex-1 sm:flex-grow">
+                                <nz-select [(ngModel)]="searchRq.athrzChargerId" class="w-full">
+                                    <nz-option nzValue='' nzLabel=""></nz-option>
+                                    <nz-option *ngFor="let item of selectItem?.athrzChargerList" [nzValue]="item?.userId"
+                                        [nzLabel]="item?.userNm"></nz-option>
+                                </nz-select>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row">
+                            <h1 class=" p-2 w-28 flex-none self-center">상호명</h1>
+                            <div class="p-2 flex-1 sm:flex-grow">
+                                <input [(ngModel)]="searchRq.entrpsNm" nz-input />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-3 w-full grid ">
+                <div class="place-self-end">
+                    <button class="mr-4 hidden md:inline-block" (click)="downloadExcel()" nz-button nzType="primary"><i
+                            nz-icon nzType="search"></i>이력정보 다운로드
+                    </button>
+                    <button class="mr-4 w-20 sm:mr-4 inline-block md:hidden" (click)="showScanQr()" nz-button
+                        nzType="primary"><i nz-icon nzType="search"></i>스캔</button>
+                    <button class="mr-4 w-20 sm:mr-14" (click)="search()" nz-button nzType="primary"><i nz-icon
+                            nzType="search"></i>검색</button>
+                </div>
+            </div>
+
+            <div class="flex flex-col max-w-full mt-6 p-4  flex-nowrap border border-solid overflow-x-auto">
+                <nz-table class=" w-full" nzFrontPagination="false" [nzScroll]="reponsiveTable()" nzSize="small"
+                    #basicTable [nzData]="tableData" [nzLoading]="spinning">
+                    <thead>
+                        <tr>
+                            <th class="bg-gray-100 text-center w-20">No.</th>
+                            <th class="bg-gray-100 text-center">구분</th>
+                            <th class="bg-gray-100 text-center">접수번호</th>
+                            <th class="bg-gray-100 text-center">상호명</th>
+                            <th class="bg-gray-100 text-center">계량기종류</th>
+                            <th class="bg-gray-100 text-center">검정담당자</th>
+                            <th class="bg-gray-100 text-center">완료일</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr *ngFor="let data of basicTable.data">
+                            <td>{{data.rowNumber}}</td>
+                            <td>{{data.athrzSeCodeName}}</td>
+                            <td>
+                                <a class="cursor-pointer"
+                                    routerLink="../status/view/{{data.athrzSn}}">{{data.athrzRceptNo}}</a>
+                            </td>
+                            <td>{{data.entrpsNm}}</td>
+                            <td>
+                                <div *ngIf="data.mrnrSeCnt > 0 ">{{data.mrnrSeNm}} 외 {{data.mrnrSeCnt}} 건</div>
+                                <div *ngIf="data.mrnrSeCnt === 0 ">{{data.mrnrSeNm}}</div>
+                            </td>
+                            <td>
+                                <div *ngIf="data.cnfrmnIssuPrintStr !== '???'">{{data.cnfrmnIssuPrintStr}}</div>
+                                <div *ngIf="data.cnfrmnIssuPrintStr === '???'">미신청</div>
+                            </td>
+                            <td>{{data.athrzEndDe}}</td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+
+                <div class="pb-3 w-full grid ">
+                    <nz-pagination class="place-self-center sm:mr-14" [(nzPageIndex)]="indexPage" [nzResponsive]="true"
+                        [nzTotal]="totalPage" [nzPageSize]="10" (nzPageIndexChange)="pageChange()"></nz-pagination>
+                </div>
+            </div>
+        </div>
+</div>

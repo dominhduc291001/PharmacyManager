@@ -1,0 +1,34 @@
+<div class="flex flex-nowrap flex-col md:flex-row sm:flex-row-reverse w-full p-2 border border-solid border-blue-300">
+    <div class=" p-4 sm:w-1/2 flex flex-col">
+        <mat-form-field class="w-full md:w-3/4" appearance="outline">
+            <mat-label>시료수량</mat-label>
+            <input type="number" class="text-black" [value]="dataPage?.formConsentT?.formConsent?.sploreQy"  matInput>
+        </mat-form-field>
+
+        <mat-form-field class="w-full md:w-3/4" appearance="outline">
+            <mat-label><span class="text-red-400">* </span>시료접수일</mat-label>
+            <input matInput [(ngModel)]="sploreDate" [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class=" p-4 sm:w-1/2 flex flex-col">
+        <div class="flex flex-col -mt-5 sm:mt-0.5  mb-6 p-4 md:flex-row h-auto w-full md:w-3/4  border border-solid border-gray-300 ">
+            <label><span class="text-red-400 text-sm">* </span>시험후시료처리</label>
+            <mat-radio-group [(ngModel)]="testSploreProcessCode"  class="md:ml-2 py-2 sm:py-0 flex flex-col md:flex-row flex-wrap">
+                <mat-radio-button class="ml-3 mt-2 text-sm md:mt-0" value="AB005001">반환</mat-radio-button>
+                <mat-radio-button class="ml-3 mt-2 text-sm md:mt-0" value="AB005002">보관</mat-radio-button>
+                <mat-radio-button class="ml-3 mt-2 text-sm md:mt-0" value="AB005003">폐기</mat-radio-button>
+                <mat-radio-button class="ml-3 mt-2 text-sm md:mt-0" value="AB005004">해당없음</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <mat-form-field class="w-full md:w-3/4" appearance="outline">
+            <mat-label>시료접수담당자</mat-label>
+            <mat-select [(ngModel)]="sploreChargerId">
+                <mat-option [value]=''> =선택= </mat-option>
+                <mat-option *ngFor="let item of dataPage?.rceptChargerList" [value]="item.userId">[{{item.deptNm}}]{{item.userNm}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
