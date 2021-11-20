@@ -6,7 +6,7 @@ namespace Data.Dtos
 {
     public class LoginDto
     {
-        public string userId { get; set; }
-        public string userPass { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
     }
 }
