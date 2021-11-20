@@ -1,4 +1,5 @@
 ﻿using Application.IServices;
+using Data.Dtos;
 using Data.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -55,6 +56,42 @@ namespace PharmacyManager.Controllers
                 return BadRequest(ex.Message);
             }
             return BadRequest(new { message = "Get all product type faile" });
+        }
+
+        [HttpPost("CreateProduct")]
+        public async Task<IActionResult> CreateProduct(ProductDto request)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    StatusView result = await _productService.createProduct(request);
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return BadRequest(new { message = "Create product failed" });
+        }
+
+        [HttpDelete("DeleteProduct")]
+        public async Task<IActionResult> DeleteProduct(string ProId)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    StatusView result = await _productService.deleteProduct(ProId);
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return BadRequest(new { message = "Delete product failed" });
         }
     }
 }
