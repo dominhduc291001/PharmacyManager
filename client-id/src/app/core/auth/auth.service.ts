@@ -5,15 +5,13 @@ import { catchError, switchMap } from 'rxjs/operators';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 import { UrlDefault } from 'app/shared/urlDefault';
 @Injectable()
-export class AuthService
-{
+export class AuthService {
     /**
      * Constructor
      */
     constructor(
         private _httpClient: HttpClient
-    )
-    {
+    ) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -23,22 +21,19 @@ export class AuthService
     /**
      * Setter & getter for access token
      */
-    set accessToken(token: string)
-    {
+    set accessToken(token: string) {
         localStorage.setItem('accessToken', token);
     }
 
-    get accessToken(): string
-    {
+    get accessToken(): string {
         return localStorage.getItem('accessToken') ?? '';
     }
 
-    set userOnl(token: string){
-        localStorage.setItem('username',  AuthUtils.getUserOnl(token));
+    set userOnl(token: string) {
+        localStorage.setItem('username', AuthUtils.getUserOnl(token));
     }
 
-    get userOnl(): string
-    {
+    get userOnl(): string {
         return localStorage.getItem('username') ?? '';
     }
 
@@ -52,22 +47,11 @@ export class AuthService
      *
      * @param credentials
      */
-    signIn(credentials: { username: string; password: string }): Observable<any>
-    {
-        // return this._httpClient.post('http://api.ktc.thlone.vn/api/Auth/Login', credentials).pipe(
-        //     switchMap((response: any) => {
-
-        //         // Store the access token in the local storage
-        //         this.accessToken = response.accessToken;
-        //         this.userOnl = response.accessToken;
-        //         // Return a new observable with the response
-        //         return of(response);
-        //     })
-        // );
+    signIn(credentials: { username: string; password: string }): Observable<any> {
+        console.log(credentials);
         return this._httpClient.post(`${UrlDefault._apiServer}/api/Auth/Login`, credentials).pipe(
             switchMap((response: any) => {
-                this.accessToken = response.accessToken;
-                this.userOnl = response.accessToken;
+                this.accessToken = response.token;
                 return of(response);
             })
         );
@@ -76,8 +60,7 @@ export class AuthService
     /**
      * Sign out
      */
-    signOut(): Observable<any>
-    {
+    signOut(): Observable<any> {
         // Remove the access token from the local storage
         localStorage.removeItem('accessToken');
         localStorage.removeItem('username');
@@ -86,16 +69,13 @@ export class AuthService
     }
 
 
-    check(): Observable<boolean>
-    {
+    check(): Observable<boolean> {
         // Check the access token availability
-        if ( !this.accessToken )
-        {
+        if (!this.accessToken) {
             return of(false);
         }
         // Check the access token expire date
-        if ( AuthUtils.isTokenExpired(this.accessToken) )
-        {
+        if (AuthUtils.isTokenExpired(this.accessToken)) {
             return of(false);
         }
         return of(true);

@@ -12,7 +12,7 @@ import { mockApiServices } from 'app/mock-api';
 import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
-import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { NZ_I18N, vi_VN } from 'ng-zorro-antd/i18n';
 import { ko_KR } from 'ng-zorro-antd/i18n';
 import ko from '@angular/common/locales/ko';
 import { registerLocaleData } from '@angular/common';
@@ -52,7 +52,7 @@ registerLocaleData(ko);
         // 3rd party modules that require global configuration via forRoot
         MarkdownModule.forRoot({})
     ],
-    providers: [{ provide: NZ_I18N, useValue: ko_KR }],
+    providers: [{ provide: NZ_I18N, useValue: vi_VN }],
     bootstrap: [
         AppComponent
     ]

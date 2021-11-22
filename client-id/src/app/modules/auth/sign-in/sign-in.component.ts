@@ -93,7 +93,7 @@ export class AuthSignInComponent implements OnInit {
                     // Set the alert
                     this.alert = {
                         type: 'error',
-                        message: '로그인ID 또는 암호를 확인하시기 바랍니다.'
+                        message: 'Tài khoản hoặc mật khẩu không chính xác'
                     };
 
                     // Show the alert
