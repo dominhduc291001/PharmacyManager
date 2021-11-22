@@ -13,6 +13,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const quanLyThuocRoutes: Route[] = [
     {
@@ -38,7 +39,8 @@ const quanLyThuocRoutes: Route[] = [
         NzSpinModule,
         NzBreadCrumbModule,
         NzMessageModule,
-        NzModalModule
+        NzModalModule,
+        ReactiveFormsModule
     ]
 })
 
