@@ -423,6 +423,7 @@ namespace Data.Models
                     .HasColumnName("userPass")
                     .HasMaxLength(30);
             });
+            modelBuilder.Entity<InfoUserView>().HasNoKey();
             modelBuilder.Entity<ProductView>().HasNoKey();
             modelBuilder.Entity<ProductTypeView>().HasNoKey();
             OnModelCreatingPartial(modelBuilder);

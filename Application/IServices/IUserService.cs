@@ -9,5 +9,6 @@ namespace Application.IServices
     public interface IUserService
     {
         Task<InfoUserView> getInfoUser(string request);
+        Task<List<InfoUserView>> getAllUser();
     }
 }
