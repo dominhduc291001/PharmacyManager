@@ -63,7 +63,7 @@ namespace Application.Services
             StatusView result = new StatusView()
             {
                 status = "false",
-                message = "create product failed !"
+                message = "delete product failed !"
             };
             if (request == null)
             {
