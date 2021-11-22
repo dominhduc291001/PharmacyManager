@@ -3,10 +3,10 @@
     [opened]="!isScreenSmall">
     <!-- Navigation header hook -->
     <ng-container fuseVerticalNavigationContentHeader>
-        <div *ngIf="isOpen === false && navigationAppearance !=='default'" class="flex items-center p-4 justify-center h-13">
+        <div *ngIf="isOpen === false && navigationAppearance !=='default'" class="flex items-center p-4 justify-center max-h-16">
         </div>
         <!-- Logo -->
-        <div *ngIf="isOpen === true || isScreenSmall || navigationAppearance ==='default'" class="flex items-center p-4 justify-center h-20">
+        <div *ngIf="isOpen === true || isScreenSmall || navigationAppearance ==='default'" class="flex items-center p-4 justify-center h-16">
             <img class="p-4" routerLink="/Dashboard" src="assets/images/logo/logo-main.png" alt="Logo image">
         </div>
         <hr *ngIf="isOpen === true || isScreenSmall || navigationAppearance ==='default'" style="color: gray;" />

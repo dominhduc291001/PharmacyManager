@@ -9,6 +9,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon: 'heroicons_outline:shield-check',
         link: '/QuanLyThuoc'
     },
+    {
+        id: 'user',
+        title: 'Quản lý người dùng',
+        type: 'basic',
+        icon: 'heroicons_outline:shield-check',
+        link: '/QuanLyNguoiDung'
+    }
     // {
     //     id      : 'qrcode',
     //     title   : 'QR코드 관리',
@@ -43,6 +50,14 @@ export const compactNavigation: FuseNavigationItem[] = [
         icon: 'heroicons_outline:home',
         link: '/QuanLyThuoc'
     },
+    {
+        id: 'user',
+        title: 'Quản lý người dùng',
+        tooltip: 'Quản lý người dùng',
+        type: 'basic',
+        icon: 'heroicons_outline:home',
+        link: '/QuanLyNguoiDung'
+    }
     // {
     //     id      : 'test',
     //     title   : '검정관리',
