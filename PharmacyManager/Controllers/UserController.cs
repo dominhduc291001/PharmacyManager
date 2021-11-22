@@ -1,4 +1,5 @@
 ﻿using Application.IServices;
+using Data.Dtos;
 using Data.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -42,7 +43,7 @@ namespace PharmacyManager.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            return BadRequest(new { message = "Get info user faile" });
+            return BadRequest(new { message = "Get info user failed" });
         }
 
 
@@ -61,7 +62,79 @@ namespace PharmacyManager.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            return BadRequest(new { message = "Get all user faile" });
+            return BadRequest(new { message = "Get all user failed" });
+        }
+
+        [HttpGet("GetRoleUser")]
+        public async Task<IActionResult> GetRoleUser(string userId)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    List<RoleUserView> result = await _userService.getRoleUser(userId);
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return BadRequest(new { message = "Get role user failed" });
+        }
+
+        [HttpPost("CreateOrUpdateUser")]
+        public async Task<IActionResult> CreateOrUpdateUser(UserDto user)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    StatusView result = await _userService.updateUser(user);
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return BadRequest(new { message = "create or update user failed" });
+        }
+
+        [HttpPost("AddRoleUser")]
+        public async Task<IActionResult> AddRoleUser(RoleUserDto request)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    StatusView result = await _userService.addRoleUser(request);
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return BadRequest(new { message = "add role user failed" });
+        }
+
+        [HttpDelete("DeleteUser")]
+        public async Task<IActionResult> UpdateUser(string userId)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    StatusView result = await _userService.deleteUser(userId);
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return BadRequest(new { message = "delete user failed" });
         }
     }
 }

@@ -40,6 +40,7 @@ namespace PharmacyManager
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICustomerService, CustomerService>();
             services.AddControllers();
 
             //Swagger
@@ -107,7 +108,7 @@ namespace PharmacyManager
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Demo Phamarcy v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Phamarcy v1");
             });
 
             app.UseCors(x => x.AllowAnyOrigin()
