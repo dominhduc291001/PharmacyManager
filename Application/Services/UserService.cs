@@ -17,6 +17,21 @@ namespace Application.Services
         {
             _context = context;
         }
+
+        public async Task<List<InfoUserView>> getAllUser()
+        {
+            List<InfoUserView> result = new List<InfoUserView>();
+            try
+            {
+                result = await _context.Set<InfoUserView>().FromSqlRaw("sp_GetAll_Users").ToListAsync();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<InfoUserView> getInfoUser(string request)
         {
             InfoUserView result = new InfoUserView()

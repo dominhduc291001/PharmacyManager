@@ -44,5 +44,24 @@ namespace PharmacyManager.Controllers
             }
             return BadRequest(new { message = "Get info user faile" });
         }
+
+
+        [HttpGet("AllUsers")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    List<InfoUserView> result = await _userService.getAllUser();
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return BadRequest(new { message = "Get all user faile" });
+        }
     }
 }
