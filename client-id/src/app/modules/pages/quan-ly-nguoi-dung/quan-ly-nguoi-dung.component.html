@@ -1,0 +1,57 @@
+<div class="container w-full">
+    <ul class="flex justify-between border-b text-xs sm:text-md">
+        <li class="-mb-px mr-1">
+            <a class="bg-white dark:bg-gray-900 inline-block border-l border-t border-r rounded-t pt-3 pb-2 px-4 text-blue-700 font-semibold">Quản
+                lý người dùng</a>
+        </li>
+        <!-- <li>
+            <nz-breadcrumb [nzSeparator]="null" class="inline-block pt-3 pb-2 px-4 font-semibold">
+                <nz-breadcrumb-item class="text-gray-400">검정관리​</nz-breadcrumb-item>
+                <nz-breadcrumb-separator class="mx-2 text-gray-400">></nz-breadcrumb-separator>
+                <nz-breadcrumb-item class="text-gray-400">완료내역</nz-breadcrumb-item>
+                <nz-breadcrumb-separator class="mx-2 text-gray-400">></nz-breadcrumb-separator>
+                <nz-breadcrumb-item class="text-blue-700">전체현황</nz-breadcrumb-item>
+            </nz-breadcrumb>
+        </li> -->
+    </ul>
+
+    <div class="flex flex-col flex-auto bg-white dark:bg-gray-800 min-h-full border-t">
+        <div class="w-full text-left">
+            <button class="mt-6 ml-4" (click)="showModal()" nz-button nzType="primary">Thêm người dùng mới</button>
+        </div>
+        <nz-modal [(nzVisible)]="isVisible" nzTitle="Thêm thuốc mới" (nzOnCancel)="handleCancel()" [nzFooter]="null">
+            <ng-container *nzModalContent>
+                <p>Nhập dữ liệu người dùng...</p>
+            </ng-container>
+        </nz-modal>
+        <div class="flex flex-col max-w-full mt-6 p-4  flex-nowrap border border-solid overflow-x-auto">
+            <nz-table class=" w-full" nzFrontPagination="true" [nzScroll]="reponsiveTable()" nzSize="small" #basicTable [nzData]="tableData" [nzLoading]="spinning">
+                <thead>
+                    <tr>
+                        <th class="bg-gray-100 text-center">Mã người dùng</th>
+                        <th class="bg-gray-100 text-center">Họ và tên</th>
+                        <th class="bg-gray-100 text-center">Số điện thoại</th>
+                        <th class="bg-gray-100 text-center">Email</th>
+                        <th class="bg-gray-100 text-center"></th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr *ngFor="let data of basicTable.data">
+                        <td>{{data.userId}}</td>
+                        <td>{{data.fullName}}</td>
+                        <td>{{data.phoneNumber}}</td>
+                        <td>{{data.email}}</td>
+                        <td>
+                            <button (click)="showModal()" nz-button nzType="warning">Sửa</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+        <!-- <nz-modal [(nzVisible)]="isVisible" nzTitle="Sửa thuốc" (nzOnCancel)="handleCancel()" [nzFooter]="null">
+            <ng-container *nzModalContent>
+                <p>Sửa dữ liệu thuốc...</p>
+            </ng-container>
+        </nz-modal> -->
+    </div>
+</div>
