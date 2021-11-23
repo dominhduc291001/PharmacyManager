@@ -427,6 +427,7 @@ namespace Data.Models
             modelBuilder.Entity<ProductView>().HasNoKey();
             modelBuilder.Entity<ProductTypeView>().HasNoKey();
             modelBuilder.Entity<CustomerView>().HasNoKey();
+            modelBuilder.Entity<SupplierView>().HasNoKey();
             modelBuilder.Entity<RoleUserView>().HasNoKey();
             OnModelCreatingPartial(modelBuilder);
         }

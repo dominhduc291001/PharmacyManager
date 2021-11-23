@@ -13,22 +13,22 @@ namespace PharmacyManager.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomerController : Controller
+    public class SupplierController : Controller
     {
-        private readonly ICustomerService _customerService;
-        public CustomerController(ICustomerService customerService)
+        private readonly ISupplierService _supplierService;
+        public SupplierController(ISupplierService supplierService)
         {
-            _customerService = customerService;
+            _supplierService = supplierService;
         }
 
-        [HttpGet("AllCustomer")]
-        public async Task<IActionResult> GetAllCustomer()
+        [HttpGet("AllSupplier")]
+        public async Task<IActionResult> GetAllSupplier()
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    List<CustomerView> result = await _customerService.getAllCustomer();
+                    List<SupplierView> result = await _supplierService.getAllSupplier();
                     return Ok(result);
                 }
             }
@@ -36,17 +36,17 @@ namespace PharmacyManager.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            return BadRequest(new { message = "Get all customer failed" });
+            return BadRequest(new { message = "Get all supplier failed" });
         }
 
-        [HttpPost("CreateOrUpdateCustomer")]
-        public async Task<IActionResult> CreateOrUpdateCustomer(CustomerDto request)
+        [HttpPost("CreateOrUpdateSupplier")]
+        public async Task<IActionResult> CreateOrUpdateSupplier(SupplierDto request)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    StatusView result = await _customerService.updateOrCreateCustomer(request);
+                    StatusView result = await _supplierService.updateOrCreateSupplier(request);
                     return Ok(result);
                 }
             }
@@ -54,17 +54,17 @@ namespace PharmacyManager.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            return BadRequest(new { message = "Create or update customer failed" });
+            return BadRequest(new { message = "Create or update supplier failed" });
         }
 
-        [HttpDelete("DeleteCustomer")]
-        public async Task<IActionResult> DeleteProduct(string cusId)
+        [HttpDelete("DeleteSupplier")]
+        public async Task<IActionResult> DeleteSupplier(string supId)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    StatusView result = await _customerService.deleteCustomer(cusId);
+                    StatusView result = await _supplierService.deleteSupplier(supId);
                     return Ok(result);
                 }
             }
@@ -72,7 +72,7 @@ namespace PharmacyManager.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            return BadRequest(new { message = "Delete customer failed" });
+            return BadRequest(new { message = "Delete supplier failed" });
         }
     }
 }
