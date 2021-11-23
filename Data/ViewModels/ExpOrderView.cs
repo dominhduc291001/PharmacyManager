@@ -8,7 +8,6 @@ namespace Data.ViewModels
     {
         public string ExpId { get; set; }
         public DateTime? ExpDate { get; set; }
-        public int? ExpStatus { get; set; }
         public string ExpNote { get; set; }
         public decimal? ExpTotal { get; set; }
         public string CusId { get; set; }

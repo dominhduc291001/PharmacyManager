@@ -12,6 +12,7 @@ namespace Application.IServices
         Task<List<ProductView>> getAllProduct();
         Task<List<ProductTypeView>> getAllProductType();
         Task<StatusView> createProduct(ProductDto request);
+        Task<StatusView> updateProduct(ProductDto request);
         Task<StatusView> deleteProduct(string request);
     }
 }

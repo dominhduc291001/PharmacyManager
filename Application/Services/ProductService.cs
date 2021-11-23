@@ -104,5 +104,28 @@ namespace Application.Services
                 throw ex;
             }
         }
+
+        public async Task<StatusView> updateProduct(ProductDto request)
+        {
+            StatusView result = new StatusView()
+            {
+                status = "true",
+                message = "update product success !"
+            };
+            Product product = await _context.Product.FindAsync(request.ProId);
+            if(product == null)
+            {
+                result.status = "false";
+                result.message = "product not found";
+                return result;
+            }
+            product.ProName = request.ProName;
+            product.ProNo = request.ProNo;
+            product.ProPack = request.ProPack;
+            product.ProProducer = request.ProProducer;
+            product.ProProducer = request.ProUnit;
+            await _context.SaveChangesAsync();
+            return result;
+        }
     }
 }

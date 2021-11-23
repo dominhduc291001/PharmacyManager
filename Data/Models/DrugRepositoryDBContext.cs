@@ -430,6 +430,7 @@ namespace Data.Models
             modelBuilder.Entity<SupplierView>().HasNoKey();
             modelBuilder.Entity<RoleUserView>().HasNoKey();
             modelBuilder.Entity<ImpOrderView>().HasNoKey();
+            modelBuilder.Entity<ExpOrderView>().HasNoKey();
             OnModelCreatingPartial(modelBuilder);
         }
 

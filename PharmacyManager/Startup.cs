@@ -43,6 +43,7 @@ namespace PharmacyManager
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<ISupplierService, SupplierService>();
             services.AddTransient<IImpOrderService, ImpOrderService>();
+            services.AddTransient<IExpOrderService, ExpOrderService>();
             services.AddControllers();
 
             //Swagger

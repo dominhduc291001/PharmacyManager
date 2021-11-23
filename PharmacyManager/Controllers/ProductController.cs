@@ -76,6 +76,24 @@ namespace PharmacyManager.Controllers
             return BadRequest(new { message = "Create product failed" });
         }
 
+        [HttpPut("UpdateProduct")]
+        public async Task<IActionResult> UpdateProduct(ProductDto request)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    StatusView result = await _productService.updateProduct(request);
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return BadRequest(new { message = "Update product failed" });
+        }
+
         [HttpDelete("DeleteProduct")]
         public async Task<IActionResult> DeleteProduct(string ProId)
         {
