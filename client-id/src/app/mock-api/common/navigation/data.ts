@@ -15,6 +15,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
         type: 'basic',
         icon: 'heroicons_outline:shield-check',
         link: '/QuanLyNguoiDung'
+    },
+    {
+        id: 'customer',
+        title: 'Quản lý khách hàng',
+        tooltip: 'Quản lý khách hàng',
+        type: 'basic',
+        icon: 'heroicons_outline:home',
+        link: '/QuanLyKhachHang'
     }
     // {
     //     id      : 'qrcode',
@@ -57,6 +65,14 @@ export const compactNavigation: FuseNavigationItem[] = [
         type: 'basic',
         icon: 'heroicons_outline:home',
         link: '/QuanLyNguoiDung'
+    },
+    {
+        id: 'customer',
+        title: 'Quản lý khách hàng',
+        tooltip: 'Quản lý khách hàng',
+        type: 'basic',
+        icon: 'heroicons_outline:home',
+        link: '/QuanLyKhachHang'
     }
     // {
     //     id      : 'test',

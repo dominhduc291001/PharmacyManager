@@ -14,7 +14,7 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 
-const quanLyThuocRoutes: Route[] = [
+const quanLyNguoiDungRoutes: Route[] = [
     {
         path: '',
         component: QuanLyNguoiDungComponent
@@ -26,7 +26,7 @@ const quanLyThuocRoutes: Route[] = [
         QuanLyNguoiDungComponent
     ],
     imports: [
-        RouterModule.forChild(quanLyThuocRoutes),
+        RouterModule.forChild(quanLyNguoiDungRoutes),
         SharedModule,
         NzButtonModule,
         NzDatePickerModule,

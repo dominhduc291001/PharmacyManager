@@ -13,8 +13,8 @@ export class AuthSignOutComponent implements OnInit, OnDestroy
 {
     countdown: number = 5;
     countdownMapping: any = {
-        '=1'   : '# 초',
-        'other': '# 초'
+        '=1'   : '# giây',
+        'other': '# giây'
     };
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
