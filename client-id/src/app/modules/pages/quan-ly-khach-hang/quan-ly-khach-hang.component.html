@@ -2,51 +2,41 @@
     <ul class="flex justify-between border-b text-xs sm:text-md">
         <li class="-mb-px mr-1">
             <a class="bg-white dark:bg-gray-900 inline-block border-l border-t border-r rounded-t pt-3 pb-2 px-4 text-blue-700 font-semibold">Quản
-                lý thuốc</a>
+                lý khách hàng</a>
         </li>
     </ul>
 
     <div class="flex flex-col flex-auto bg-white dark:bg-gray-800 min-h-full border-t">
         <div class="w-full text-left">
-            <button class="mt-6 ml-4" (click)="showModalCreate()" nz-button nzType="primary">Thêm thuốc mới</button>
+            <button class="mt-6 ml-4" (click)="showModalCreate()" nz-button nzType="primary">Thêm khách hàng mới</button>
         </div>
         <nz-modal [(nzVisible)]="isVisible" [nzTitle]="modelTitle" (nzOnCancel)="handleCancel()" [nzFooter]="null">
             <ng-container *nzModalContent>
                 <div *ngIf="contentCreateModel">
-                    <form [formGroup]="formData" (ngSubmit)="submitFormCreateOrUpdate()">
+                    <form [formGroup]="formData" (ngSubmit)="submitFormCreate()">
                         <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Mã thuốc:</label>
-                            <input class="col-span-8" nz-input formControlName="proId" placeholder="Nhập mã thuốc..." />
+                            <label class="col-span-4 self-center">Mã khách hàng:</label>
+                            <input class="col-span-8" nz-input formControlName="cusId" placeholder="Nhập mã khách hàng..." />
                         </div>
                         <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Tên thuốc:</label>
-                            <input class="col-span-8" nz-input formControlName="proName" placeholder="Nhập tên thuốc..." />
+                            <label class="col-span-4 self-center">Họ và tên:</label>
+                            <input class="col-span-8" nz-input formControlName="cusName" placeholder="Nhập họ và tên khách hàng..." />
                         </div>
                         <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Mã lô hàng:</label>
-                            <input class="col-span-8" nz-input formControlName="proNo" placeholder="Nhập mã lô hàng..." />
+                            <label class="col-span-4 self-center">Email:</label>
+                            <input class="col-span-8" nz-input formControlName="cusEmail" placeholder="Nhập email khách hàng..." />
                         </div>
                         <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Nhà sản xuất:</label>
-                            <input class="col-span-8" nz-input formControlName="proProducer" placeholder="Nhập nhà sản xuất..." />
+                            <label class="col-span-4 self-center">Số điện thoại:</label>
+                            <input class="col-span-8" nz-input formControlName="cusPhone" placeholder="Nhập số điện thoại khách hàng..." />
                         </div>
                         <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Quy cách đóng gói:</label>
-                            <input class="col-span-8" nz-input formControlName="proPack" placeholder="Nhập quy cách đóng gói..." />
+                            <label class="col-span-4 self-center">Địa chỉ:</label>
+                            <input class="col-span-8" nz-input formControlName="cusAddress" placeholder="Nhập địa chỉ khách hàng..." />
                         </div>
                         <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Đơn vị tính:</label>
-                            <input class="col-span-8" nz-input formControlName="proUnit" placeholder="Nhập đơn vị tính..." />
-                        </div>
-                        <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Loại thuốc:</label>
-                            <nz-select formControlName="typeId" nzPlaceHolder="-- Chọn loại thuốc --" class="col-span-8">
-                                <nz-option *ngFor="let item of listTypeName" [nzValue]="item?.typeId" [nzLabel]="item?.typeName"></nz-option>
-                            </nz-select>
-                        </div>
-                        <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Giá tiền:</label>
-                            <input class="col-span-8" nz-input formControlName="proPrice" placeholder="Nhập giá tiền..." />
+                            <label class="col-span-4 self-center">Giấy phép khách hàng:</label>
+                            <input class="col-span-8" nz-input formControlName="cusLicense" placeholder="Nhập giấy phép khách hàng..." />
                         </div>
                         <div class="grid grid-cols-12 mb-2">
                             <div class="col-span-4"></div>
@@ -57,45 +47,35 @@
                     </form>
                 </div>
                 <div *ngIf="!contentCreateModel">
-                    <form [formGroup]="formData" (ngSubmit)="submitFormCreateOrUpdate()">
+                    <form [formGroup]="formData" (ngSubmit)="submitFormUpdate()">
                         <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Mã thuốc:</label>
-                            <input class="col-span-8" nz-input formControlName="proId" placeholder="Nhập mã thuốc..." />
+                            <label class="col-span-4 self-center">Mã khách hàng:</label>
+                            <input class="col-span-8" nz-input formControlName="cusId" placeholder="Nhập mã khách hàng..." readonly/>
                         </div>
                         <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Tên thuốc:</label>
-                            <input class="col-span-8" nz-input formControlName="proName" placeholder="Nhập tên thuốc..." />
+                            <label class="col-span-4 self-center">Họ và tên:</label>
+                            <input class="col-span-8" nz-input formControlName="cusName" placeholder="Nhập họ và tên khách hàng..." />
                         </div>
                         <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Mã lô hàng:</label>
-                            <input class="col-span-8" nz-input formControlName="proNo" placeholder="Nhập mã lô hàng..." />
+                            <label class="col-span-4 self-center">Email:</label>
+                            <input class="col-span-8" nz-input formControlName="cusEmail" placeholder="Nhập email khách hàng..." />
                         </div>
                         <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Nhà sản xuất:</label>
-                            <input class="col-span-8" nz-input formControlName="proProducer" placeholder="Nhập nhà sản xuất..." />
+                            <label class="col-span-4 self-center">Số điện thoại:</label>
+                            <input class="col-span-8" nz-input formControlName="cusPhone" placeholder="Nhập số điện thoại khách hàng..." />
                         </div>
                         <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Quy cách đóng gói:</label>
-                            <input class="col-span-8" nz-input formControlName="proPack" placeholder="Nhập quy cách đóng gói..." />
+                            <label class="col-span-4 self-center">Địa chỉ:</label>
+                            <input class="col-span-8" nz-input formControlName="cusAddress" placeholder="Nhập địa chỉ khách hàng..." />
                         </div>
                         <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Đơn vị tính:</label>
-                            <input class="col-span-8" nz-input formControlName="proUnit" placeholder="Nhập đơn vị tính..." />
-                        </div>
-                        <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Loại thuốc:</label>
-                            <nz-select formControlName="typeId" nzPlaceHolder="-- Chọn loại thuốc --" class="col-span-8">
-                                <nz-option *ngFor="let item of listTypeName" [nzValue]="item?.typeId" [nzLabel]="item?.typeName"></nz-option>
-                            </nz-select>
-                        </div>
-                        <div class="grid grid-cols-12 mb-2">
-                            <label class="col-span-4 self-center">Giá tiền:</label>
-                            <input class="col-span-8" nz-input formControlName="proPrice" placeholder="Nhập giá tiền..." />
+                            <label class="col-span-4 self-center">Giấy phép khách hàng:</label>
+                            <input class="col-span-8" nz-input formControlName="cusLicense" placeholder="Nhập giấy phép khách hàng..." />
                         </div>
                         <div class="grid grid-cols-12 mb-2">
                             <div class="col-span-4"></div>
                             <div class="col-span-8">
-                                <button type="submit" nz-button nzType="primary" class="self-center">Thêm</button>
+                                <button type="submit" nz-button nzType="primary" class="self-center">Sửa</button>
                             </div>
                         </div>
                     </form>
@@ -106,30 +86,26 @@
             <nz-table class=" w-full" nzFrontPagination="true" [nzScroll]="reponsiveTable()" nzSize="small" #basicTable [nzData]="tableData" [nzLoading]="spinning">
                 <thead>
                     <tr>
-                        <th class="bg-gray-100 text-center">Mã thuốc</th>
-                        <th class="bg-gray-100 text-center">Tên thuốc</th>
-                        <th class="bg-gray-100 text-center">Mã lô hàng</th>
-                        <th class="bg-gray-100 text-center">Nhà sản xuất</th>
-                        <th class="bg-gray-100 text-center">Quy cách đóng gói</th>
-                        <th class="bg-gray-100 text-center">Đơn vị tính</th>
-                        <th class="bg-gray-100 text-center">Loại thuốc</th>
-                        <th class="bg-gray-100 text-center">Giá tiền</th>
+                        <th class="bg-gray-100 text-center">Mã khách hàng</th>
+                        <th class="bg-gray-100 text-center">Họ và tên</th>
+                        <th class="bg-gray-100 text-center">Email</th>
+                        <th class="bg-gray-100 text-center">Số điện thoại</th>
+                        <th class="bg-gray-100 text-center">Địa chỉ</th>
+                        <th class="bg-gray-100 text-center">Giấy phép khách hàng</th>
                         <th class="bg-gray-100 text-center"></th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
                     <tr *ngFor="let data of basicTable.data">
-                        <td>{{data.proId}}</td>
-                        <td>{{data.proName}}</td>
-                        <td>{{data.proNo}}</td>
-                        <td>{{data.proProducer}}</td>
-                        <td>{{data.proPack}}</td>
-                        <td>{{data.proUnit}}</td>
-                        <td>{{data.typeName}}</td>
-                        <td>{{data.proPrice}}</td>
+                        <td>{{data.cusId}}</td>
+                        <td>{{data.cusName}}</td>
+                        <td>{{data.cusEmail}}</td>
+                        <td>{{data.cusPhone}}</td>
+                        <td>{{data.cusAddress}}</td>
+                        <td>{{data.cusLicense}}</td>
                         <td>
                             <button (click)="showModalUpdate(data)" nz-button nzType="default" nzWarning>Sửa</button>
-                            <button (click)="deleteProduct(data.proId)" nz-button nzType="primary" nzDanger class="ml-2">Xóa</button>
+                            <button (click)="deleteCustomer(data.cusId)" nz-button nzType="primary" nzDanger class="ml-2">Xóa</button>
                         </td>
                     </tr>
                 </tbody>
