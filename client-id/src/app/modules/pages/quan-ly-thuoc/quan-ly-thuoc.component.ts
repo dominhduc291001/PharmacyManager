@@ -65,6 +65,17 @@ export class QuanLyThuocComponent implements OnInit {
         this.modelTitle = 'Thêm thuốc mới';
         this.contentCreateModel = true;
 
+        this.formData.setValue({
+            proId: null,
+            proName: null,
+            proNo: null,
+            proProducer: null,
+            proPack: null,
+            proUnit: null,
+            typeId: null,
+            proPrice: null,
+        });
+
         this._thuocService.AllProductType().subscribe((data) => {
             this.listTypeName = data;
         }, (err) => {

@@ -61,6 +61,7 @@ export const appRoutes: Route[] = [
             // { path: 'Dashboard', loadChildren: () => import('app/modules/admin/KTC/Dashboard.module').then(m => m.DashboardModule) },
             { path: 'QuanLyThuoc', loadChildren: () => import('app/modules/pages/quan-ly-thuoc/quan-ly-thuoc.module').then(m => m.QuanLyThuocModule) },
             { path: 'QuanLyNguoiDung', loadChildren: () => import('app/modules/pages/quan-ly-nguoi-dung/quan-ly-nguoi-dung.module').then(m => m.QuanLyNguoiDungModule) },
+            { path: 'QuanLyKhachHang', loadChildren: () => import('app/modules/pages/quan-ly-khach-hang/quan-ly-khach-hang.module').then(m => m.QuanLyKhachHangModule) },
             { path: '404', loadChildren: () => import('app/shared/error-page/error-page.module').then(m => m.ErrorPageModule) },
             // error page 404
             { path: '**', loadChildren: () => import('app/shared/error-page/error-page.module').then(m => m.ErrorPageModule) }
