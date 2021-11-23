@@ -8,26 +8,25 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
-import { QuanLyThuocComponent } from './quan-ly-thuoc.component';
+import { QuanLyKhachHangComponent } from './quan-ly-khach-hang.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-import { ReactiveFormsModule } from '@angular/forms';
 
-const quanLyThuocRoutes: Route[] = [
+const quanLyKhachHangRoutes: Route[] = [
     {
         path: '',
-        component: QuanLyThuocComponent
+        component: QuanLyKhachHangComponent
     }
 ];
 
 @NgModule({
     declarations: [
-        QuanLyThuocComponent
+        QuanLyKhachHangComponent
     ],
     imports: [
-        RouterModule.forChild(quanLyThuocRoutes),
+        RouterModule.forChild(quanLyKhachHangRoutes),
         SharedModule,
         NzButtonModule,
         NzDatePickerModule,
@@ -39,10 +38,9 @@ const quanLyThuocRoutes: Route[] = [
         NzSpinModule,
         NzBreadCrumbModule,
         NzMessageModule,
-        NzModalModule,
-        ReactiveFormsModule
+        NzModalModule
     ]
 })
 
-export class QuanLyThuocModule {
+export class QuanLyKhachHangModule {
 }

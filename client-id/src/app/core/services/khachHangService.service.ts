@@ -5,13 +5,12 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { UrlDefault } from 'app/shared/urlDefault';
 import { Thuoc } from '../models/thuoc';
-import { LoaiThuoc } from '../models/loai-thuoc';
-import { ThuocRequest } from '../models/thuoc-request';
+import { KhachHang } from '../models/khach-hang';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ThuocService {
+export class KhachHangService {
     private httpOptions = {
         headers: new HttpHeaders({
             // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -21,32 +20,24 @@ export class ThuocService {
     constructor(private router: Router, private httpClient: HttpClient) { }
 
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    public AllProduct(): Observable<any> {
-        const url = `${UrlDefault._apiServer}/api/Product/AllProduct`;
+    public AllCustomer(): Observable<any> {
+        const url = `${UrlDefault._apiServer}/api/Customer/AllCustomer`;
         return this.httpClient
-            .get<Thuoc>(url, this.httpOptions)
+            .get<KhachHang>(url, this.httpOptions)
             .pipe(catchError(this.handleError));
     }
 
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    public AllProductType(): Observable<any> {
-        const url = `${UrlDefault._apiServer}/api/Product/AllProductType`;
-        return this.httpClient
-            .get<LoaiThuoc>(url, this.httpOptions)
-            .pipe(catchError(this.handleError));
-    }
-
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    public CreateProduct(result: ThuocRequest): Observable<any> {
-        const url = `${UrlDefault._apiServer}/api/Product/CreateProduct`;
+    public CreateOrUpdateCustomer(result: KhachHang): Observable<any> {
+        const url = `${UrlDefault._apiServer}/api/Customer/CreateOrUpdateCustomer`;
         return this.httpClient
             .post<any>(url, result, this.httpOptions)
             .pipe(catchError(this.handleError));
     }
 
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    public DeleteProduct(result: string): Observable<any> {
-        const url = `${UrlDefault._apiServer}/api/Product/DeleteProduct?ProId=${result}`;
+    public DeleteCustomer(result: string): Observable<any> {
+        const url = `${UrlDefault._apiServer}/api/Customer/DeleteCustomer?cusId=${result}`;
         return this.httpClient
             .delete<any>(url, this.httpOptions)
             .pipe(catchError(this.handleError));

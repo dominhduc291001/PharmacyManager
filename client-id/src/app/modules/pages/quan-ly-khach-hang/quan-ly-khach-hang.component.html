@@ -13,7 +13,7 @@
         <nz-modal [(nzVisible)]="isVisible" [nzTitle]="modelTitle" (nzOnCancel)="handleCancel()" [nzFooter]="null">
             <ng-container *nzModalContent>
                 <div *ngIf="contentCreateModel">
-                    <form [formGroup]="formData" (ngSubmit)="submitFormCreate()">
+                    <form [formGroup]="formData" (ngSubmit)="submitFormCreateOrUpdate()">
                         <div class="grid grid-cols-12 mb-2">
                             <label class="col-span-4 self-center">Mã thuốc:</label>
                             <input class="col-span-8" nz-input formControlName="proId" placeholder="Nhập mã thuốc..." />
@@ -57,7 +57,7 @@
                     </form>
                 </div>
                 <div *ngIf="!contentCreateModel">
-                    <form [formGroup]="formData" (ngSubmit)="submitFormUpdate()">
+                    <form [formGroup]="formData" (ngSubmit)="submitFormCreateOrUpdate()">
                         <div class="grid grid-cols-12 mb-2">
                             <label class="col-span-4 self-center">Mã thuốc:</label>
                             <input class="col-span-8" nz-input formControlName="proId" placeholder="Nhập mã thuốc..." />

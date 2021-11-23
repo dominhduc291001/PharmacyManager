@@ -8,26 +8,34 @@ import { Thuoc } from '../models/thuoc';
 import { NguoiDung } from '../models/nguoi-dung';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class NguoiDungService {
-  private httpOptions = {
-    headers: new HttpHeaders({
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      'Content-Type': 'application/json'
-    }),
-  };
-  constructor(private router: Router, private httpClient: HttpClient) { }
+    private httpOptions = {
+        headers: new HttpHeaders({
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            'Content-Type': 'application/json'
+        }),
+    };
+    constructor(private router: Router, private httpClient: HttpClient) { }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  public AllUsers(): Observable<any>{
-    const url = `${UrlDefault._apiServer}/api/User/AllUsers`;
-    return this.httpClient
-      .get<NguoiDung>(url,this.httpOptions)
-      .pipe(catchError(this.handleError));
-  }
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    public AllUsers(): Observable<any> {
+        const url = `${UrlDefault._apiServer}/api/User/AllUsers`;
+        return this.httpClient
+            .get<NguoiDung>(url, this.httpOptions)
+            .pipe(catchError(this.handleError));
+    }
 
-  private handleError(error: HttpErrorResponse): any{
-    return throwError(error.status);
-  }
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    public DeleteUser(result: string): Observable<any> {
+        const url = `${UrlDefault._apiServer}/api/User/DeleteUser?userId=${result}`;
+        return this.httpClient
+            .delete<any>(url, this.httpOptions)
+            .pipe(catchError(this.handleError));
+    }
+
+    private handleError(error: HttpErrorResponse): any {
+        return throwError(error.status);
+    }
 }

@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
-import { Thuoc } from 'app/core/models/thuoc';
+import { NguoiDung } from 'app/core/models/nguoi-dung';
 import { NguoiDungService } from 'app/core/services/nguoiDungService.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
     selector: 'quan-ly-nguoi-dung',
@@ -11,11 +12,13 @@ import { NguoiDungService } from 'app/core/services/nguoiDungService.service';
 
 export class QuanLyNguoiDungComponent implements OnInit {
     spinning = false;
-    tableData: Thuoc[];
+    tableData: NguoiDung[];
     isVisible = false;
+    modelTitle = '';
+    contentCreateModel = true;
 
     // constructor(private _testComplete: InspectionCompleteService, private message: NzMessageService) { }
-    constructor(private _nguoiDungService: NguoiDungService) { }
+    constructor(private _nguoiDungService: NguoiDungService, private message: NzMessageService) { }
 
     ngOnInit(): void {
         this.spinning = true;
@@ -30,7 +33,34 @@ export class QuanLyNguoiDungComponent implements OnInit {
     }
 
     createMessage(type: string, mess: string): void {
-        // this.message.create(type, mess);
+        this.message.create(type, mess);
+    }
+
+    showModalCreate(): void {
+        this.isVisible = true;
+        this.modelTitle = 'Thêm người dùng mới';
+        this.contentCreateModel = true;
+    }
+
+    submitFormCreate(): void {
+    }
+
+    showModalUpdate(nguoiDung: NguoiDung): void {
+        this.isVisible = true;
+        this.modelTitle = 'Sửa thông tin người dùng';
+        this.contentCreateModel = false;
+    }
+
+    submitFormUpdate(): void {
+    }
+
+    deleteProduct(userId: string): void {
+        this._nguoiDungService.DeleteUser(userId).subscribe((data) => {
+            this.createMessage('success', 'Xóa người dùng thành công');
+            this.ngOnInit();
+        }, (err) => {
+            this.createMessage('error', 'Xóa người dùng không thành công');
+        });
     }
 
     reponsiveTable(): any {
