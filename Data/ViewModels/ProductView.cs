@@ -15,5 +15,6 @@ namespace Data.ViewModels
         public decimal? ProPrice { get; set; }
         public int TypeId { get; set; }
         public string TypeName { get; set; }
+        public int? Quantity { get; set; }
     }
 }
