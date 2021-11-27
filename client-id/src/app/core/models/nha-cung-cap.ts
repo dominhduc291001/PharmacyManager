@@ -4,8 +4,8 @@ export class NhaCungCap {
     supEmail: string;
     supPhone: string;
     supAddress: string;
-    supNo: 1;
-    supLicense: 1;
+    supNo: string;
+    supLicense: string;
 
     constructor() {
         this.supId = null;
