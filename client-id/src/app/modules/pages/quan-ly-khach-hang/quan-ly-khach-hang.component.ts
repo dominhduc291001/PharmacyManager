@@ -88,7 +88,7 @@ export class QuanLyKhachHangComponent implements OnInit {
         });
     }
 
-    submitFormCreateOrUpdate(): void {
+    submitFormCreate(): void {
         this.khachHang.cusId = this.formData.get('cusId').value;
         this.khachHang.cusName = this.formData.get('cusName').value;
         this.khachHang.cusEmail = this.formData.get('cusEmail').value;
@@ -102,6 +102,23 @@ export class QuanLyKhachHangComponent implements OnInit {
             this.khachHang = new KhachHang();
         }, (err) => {
             this.createMessage('error', 'Thêm khách hàng mới không thành công');
+        });
+    }
+
+    submitFormUpdate(): void {
+        this.khachHang.cusId = this.formData.get('cusId').value;
+        this.khachHang.cusName = this.formData.get('cusName').value;
+        this.khachHang.cusEmail = this.formData.get('cusEmail').value;
+        this.khachHang.cusPhone = this.formData.get('cusPhone').value;
+        this.khachHang.cusAddress = this.formData.get('cusAddress').value;
+        this.khachHang.cusLicense = this.formData.get('cusLicense').value;
+        this.khachHangService.CreateOrUpdateCustomer(this.khachHang).subscribe((data) => {
+            this.handleCancel();
+            this.createMessage('success', 'Sửa thông tin khách hàng thành công');
+            this.ngOnInit();
+            this.khachHang = new KhachHang();
+        }, (err) => {
+            this.createMessage('error', 'Sửa thông tin khách hàng không thành công');
         });
     }
 

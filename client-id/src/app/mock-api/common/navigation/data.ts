@@ -23,31 +23,15 @@ export const defaultNavigation: FuseNavigationItem[] = [
         type: 'basic',
         icon: 'heroicons_outline:home',
         link: '/QuanLyKhachHang'
+    },
+    {
+        id: 'supplier',
+        title: 'Quản lý nhà cung cấp',
+        tooltip: 'Quản lý nhà cung cấp',
+        type: 'basic',
+        icon: 'heroicons_outline:home',
+        link: '/QuanLyNhaCungCap'
     }
-    // {
-    //     id      : 'qrcode',
-    //     title   : 'QR코드 관리',
-    //     type    : 'collapsable',
-    //     icon    : 'heroicons_outline:qrcode'
-    // },
-    // {
-    //     id      : 'info',
-    //     title   : '형식승인 정보조회',
-    //     type    : 'collapsable',
-    //     icon    : 'heroicons_outline:archive'
-    // },
-    // {
-    //     id      : 'user',
-    //     title   : '사용자 정보조회',
-    //     type    : 'collapsable',
-    //     icon    : 'heroicons_outline:user'
-    // },
-    // {
-    //     id      : 'group',
-    //     title   : '시스템 관리',
-    //     type    : 'collapsable',
-    //     icon    : 'heroicons_outline:user-group'
-    // }
 ];
 export const compactNavigation: FuseNavigationItem[] = [
     {
@@ -73,42 +57,15 @@ export const compactNavigation: FuseNavigationItem[] = [
         type: 'basic',
         icon: 'heroicons_outline:home',
         link: '/QuanLyKhachHang'
+    },
+    {
+        id: 'supplier',
+        title: 'Quản lý nhà cung cấp',
+        tooltip: 'Quản lý nhà cung cấp',
+        type: 'basic',
+        icon: 'heroicons_outline:home',
+        link: '/QuanLyNhaCungCap'
     }
-    // {
-    //     id      : 'test',
-    //     title   : '검정관리',
-    //     tooltip : '검정관리',
-    //     type    : 'aside',
-    //     icon    : 'heroicons_outline:shield-check'
-    // },
-    // {
-    //     id      : 'qrcode',
-    //     title   : 'QR코드 관리',
-    //     tooltip : 'QR코드 관리',
-    //     type    : 'aside',
-    //     icon    : 'heroicons_outline:qrcode'
-    // },
-    // {
-    //     id      : 'info',
-    //     title   : '형식승인 정보조회',
-    //     tooltip : '형식승인 정보조회',
-    //     type    : 'aside',
-    //     icon    : 'heroicons_outline:archive'
-    // },
-    // {
-    //     id      : 'user',
-    //     title   : '사용자 정보조회',
-    //     tooltip : '사용자 정보조회',
-    //     type    : 'basic',
-    //     icon    : 'heroicons_outline:user'
-    // },
-    // {
-    //     id      : 'group',
-    //     title   : '시스템관리',
-    //     tooltip : '시스템관리',
-    //     type    : 'aside',
-    //     icon    : 'heroicons_outline:cog'
-    // }
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [
 

@@ -1,0 +1,125 @@
+<div class="container w-full">
+    <ul class="flex justify-between border-b text-xs sm:text-md">
+        <li class="-mb-px mr-1">
+            <a class="bg-white dark:bg-gray-900 inline-block border-l border-t border-r rounded-t pt-3 pb-2 px-4 text-blue-700 font-semibold">Quản
+                lý nhà cung cấp</a>
+        </li>
+    </ul>
+
+    <div class="flex flex-col flex-auto bg-white dark:bg-gray-800 min-h-full border-t">
+        <div class="w-full text-left">
+            <button class="mt-6 ml-4" (click)="showModalCreate()" nz-button nzType="primary">Thêm nhà cung cấp mới</button>
+        </div>
+        <nz-modal [(nzVisible)]="isVisible" [nzTitle]="modelTitle" (nzOnCancel)="handleCancel()" [nzFooter]="null">
+            <ng-container *nzModalContent>
+                <div *ngIf="contentCreateModel">
+                    <form [formGroup]="formData" (ngSubmit)="submitFormCreate()">
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-5 self-center">Mã nhà cung cấp:</label>
+                            <input class="col-span-7" nz-input formControlName="supId" placeholder="Nhập nhà cung cấp..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-5 self-center">Tên nhà cung cấp:</label>
+                            <input class="col-span-7" nz-input formControlName="supName" placeholder="Nhập Tên nhà cung cấp..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-5 self-center">Email:</label>
+                            <input class="col-span-7" nz-input formControlName="supEmail" placeholder="Nhập email nhà cung cấp..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-5 self-center">Số điện thoại:</label>
+                            <input class="col-span-7" nz-input formControlName="supPhone" placeholder="Nhập số điện thoại nhà cung cấp..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-5 self-center">Địa chỉ:</label>
+                            <input class="col-span-7" nz-input formControlName="supAddress" placeholder="Nhập địa chỉ nhà cung cấp..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-5 self-center">Mã cung cấp:</label>
+                            <input class="col-span-7" nz-input formControlName="supNo" placeholder="Nhập mã cung cấp..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-5 self-center">Giấy phép nhà cung cấp:</label>
+                            <input class="col-span-7" nz-input formControlName="supLicense" placeholder="Nhập giấy phép nhà cung cấp..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <div class="col-span-5"></div>
+                            <div class="col-span-7">
+                                <button type="submit" nz-button nzType="primary" class="self-center">Thêm</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div *ngIf="!contentCreateModel">
+                    <form [formGroup]="formData" (ngSubmit)="submitFormUpdate()">
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-5 self-center">Mã nhà cung cấp:</label>
+                            <input class="col-span-7" nz-input formControlName="supId" placeholder="Nhập nhà cung cấp..." readonly/>
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-5 self-center">Tên nhà cung cấp:</label>
+                            <input class="col-span-7" nz-input formControlName="supName" placeholder="Nhập Tên nhà cung cấp..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-5 self-center">Email:</label>
+                            <input class="col-span-7" nz-input formControlName="supEmail" placeholder="Nhập email nhà cung cấp..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-5 self-center">Số điện thoại:</label>
+                            <input class="col-span-7" nz-input formControlName="supPhone" placeholder="Nhập số điện thoại nhà cung cấp..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-5 self-center">Địa chỉ:</label>
+                            <input class="col-span-7" nz-input formControlName="supAddress" placeholder="Nhập địa chỉ nhà cung cấp..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-5 self-center">Mã cung cấp:</label>
+                            <input class="col-span-7" nz-input formControlName="supNo" placeholder="Nhập giấy mã cung cấp..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-5 self-center">Giấy phép nhà cung cấp:</label>
+                            <input class="col-span-7" nz-input formControlName="supLicense" placeholder="Nhập giấy phép nhà cung cấp..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <div class="col-span-5"></div>
+                            <div class="col-span-7">
+                                <button type="submit" nz-button nzType="primary" class="self-center">Sửa</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </ng-container>
+        </nz-modal>
+        <div class="flex flex-col max-w-full mt-6 p-4  flex-nowrap border border-solid overflow-x-auto">
+            <nz-table class=" w-full" nzFrontPagination="true" [nzScroll]="reponsiveTable()" nzSize="small" #basicTable [nzData]="tableData" [nzLoading]="spinning">
+                <thead>
+                    <tr>
+                        <th class="bg-gray-100 text-center">Mã nhà cung cấp</th>
+                        <th class="bg-gray-100 text-center">Tên nhà cung cấp</th>
+                        <th class="bg-gray-100 text-center">Email</th>
+                        <th class="bg-gray-100 text-center">Số điện thoại</th>
+                        <th class="bg-gray-100 text-center">Địa chỉ</th>
+                        <th class="bg-gray-100 text-center">Mã cung cấp</th>
+                        <th class="bg-gray-100 text-center">Giấy phép nhà cung cấp</th>
+                        <th class="bg-gray-100 text-center"></th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr *ngFor="let data of basicTable.data">
+                        <td>{{data.supId}}</td>
+                        <td>{{data.supName}}</td>
+                        <td>{{data.supEmail}}</td>
+                        <td>{{data.supPhone}}</td>
+                        <td>{{data.supAddress}}</td>
+                        <td>{{data.supNo}}</td>
+                        <td>{{data.supLicense}}</td>
+                        <td>
+                            <button (click)="showModalUpdate(data)" nz-button nzType="default" nzWarning>Sửa</button>
+                            <button (click)="deleteCustomer(data.supId)" nz-button nzType="primary" nzDanger class="ml-2">Xóa</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+</div>
