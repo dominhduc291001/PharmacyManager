@@ -19,34 +19,30 @@ namespace Application.Services
         }
         public async Task<StatusView> CreateImpOrder(ImpOrderDto request)
         {
-            Product product = await _context.Product.FindAsync(request.ProId);
-            ImpOrder impOrder = new ImpOrder()
+            if(request.ImpNote == "")
             {
-                ImpId = request.ImpId,
-                ImpDate = request.ImpDate,
-                ImpNote = request.ImpNote,
-                ImpTotal = product.ProPrice * request.Quantity,
-                SupId = request.SupId,
-                UserId = request.UserId
-            };
-            await _context.ImpOrder.AddAsync(impOrder);
-            ImpOrderDetail impOrderDetail = new ImpOrderDetail()
+                request.ImpNote = " ";
+            }
+            var res = await _context.Database.ExecuteSqlRawAsync($"sp_AddImpOrder '{request.ImpId}', '{request.ImpDate}', '{request.ImpNote}', '{request.UserId}', '{request.SupId}', '{request.ProId}', {request.Quantity}");
+            if(res > 0)
             {
-                ProId = request.ProId,
-                Quantity = request.Quantity,
-                ImpId = request.ImpId,
-            };
-            await _context.ImpOrderDetail.AddAsync(impOrderDetail);
-
-            StoreProduct storeProduct = await _context.StoreProduct.FirstAsync(s => s.ProId == request.ProId);
-            storeProduct.Quantity += request.Quantity;
-            await _context.SaveChangesAsync();
-            StatusView result = new StatusView()
+                StatusView result = new StatusView()
+                {
+                    status = "success",
+                    message = "import product order success !"
+                };
+                return result;
+            }
+            else
             {
-                status = "success",
-                message = "import product order success !"
-            };
-            return result;
+                StatusView result = new StatusView()
+                {
+                    status = "failed",
+                    message = "import product order failed !"
+                };
+                return result;
+            }
+            
         }
 
         public async Task<List<ImpOrderView>> getAllImpOrder()

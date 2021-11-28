@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PharmacyManager.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ExpOrderController : Controller

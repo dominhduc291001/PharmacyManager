@@ -19,45 +19,29 @@ namespace Application.Services
         }
         public async Task<StatusView> createExpOrder(ExpOrderDto request)
         {
-            ExpOrder expOrder = new ExpOrder()
+            if (request.ExpNote == "")
             {
-                ExpId = request.ExpId,
-                ExpDate = request.ExpDate,
-                ExpNote = request.ExpNote,
-                CusId = request.CusId,
-                ExpStatus = 1,
-                UserId = request.UserId,
-                ExpTotal = request.ExpPrice * request.Quantity
-            };
-            await _context.ExpOrder.AddAsync(expOrder);
-            ExpOrderDetail expOrderDetail = new ExpOrderDetail()
+                request.ExpNote = " ";
+            }
+            var res = await _context.Database.ExecuteSqlRawAsync($"sp_AddExpOrder'{request.ExpId}', '{request.ExpDate}', '{request.ExpNote}', '{request.CusId}', '{request.UserId}', '{request.ProId}',{request.Quantity}, {request.ExpPrice}");
+            if (res > 0)
             {
-                ExpId = request.ExpId,
-                ExpPrice = request.ExpPrice,
-                ProId = request.ProId,
-                Quantity = request.Quantity,
-                ProNote = "1"
-            };
-            await _context.ExpOrderDetail.AddAsync(expOrderDetail);
-
-            StoreProduct storeProduct = await _context.StoreProduct.FirstAsync(s => s.ProId == request.ProId);
-            if(storeProduct.Quantity < request.Quantity)
+                StatusView result = new StatusView()
+                {
+                    status = "success",
+                    message = "export product order success !"
+                };
+                return result;
+            }
+            else
             {
-                StatusView res = new StatusView()
+                StatusView result = new StatusView()
                 {
                     status = "failed",
-                    message = "store is out of stock"
+                    message = "export product order failed !"
                 };
-                return res;
+                return result;
             }
-            storeProduct.Quantity -= request.Quantity;
-            await _context.SaveChangesAsync();
-            StatusView result = new StatusView()
-            {
-                status = "success",
-                message = "import product order success !"
-            };
-            return result;
         }
 
         public async Task<List<ExpOrderView>> getAllExpOrder()
