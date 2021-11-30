@@ -31,6 +31,22 @@ export const defaultNavigation: FuseNavigationItem[] = [
         type: 'basic',
         icon: 'heroicons_outline:home',
         link: '/QuanLyNhaCungCap'
+    },
+    {
+        id: 'supplier',
+        title: 'Quản lý xuất hàng',
+        tooltip: 'Quản lý xuất hàng',
+        type: 'basic',
+        icon: 'heroicons_outline:home',
+        link: '/QuanLyXuatHang'
+    },
+    {
+        id: 'supplier',
+        title: 'Quản lý nhập hàng',
+        tooltip: 'Quản lý nhập hàng',
+        type: 'basic',
+        icon: 'heroicons_outline:home',
+        link: '/QuanLyNhapHang'
     }
 ];
 export const compactNavigation: FuseNavigationItem[] = [
@@ -65,6 +81,22 @@ export const compactNavigation: FuseNavigationItem[] = [
         type: 'basic',
         icon: 'heroicons_outline:home',
         link: '/QuanLyNhaCungCap'
+    },
+    {
+        id: 'supplier',
+        title: 'Quản lý xuất hàng',
+        tooltip: 'Quản lý xuất hàng',
+        type: 'basic',
+        icon: 'heroicons_outline:home',
+        link: '/QuanLyXuatHang'
+    },
+    {
+        id: 'supplier',
+        title: 'Quản lý nhập hàng',
+        tooltip: 'Quản lý nhập hàng',
+        type: 'basic',
+        icon: 'heroicons_outline:home',
+        link: '/QuanLyNhapHang'
     }
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [

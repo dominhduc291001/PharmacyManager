@@ -60,6 +60,8 @@ export const appRoutes: Route[] = [
         children: [
             // { path: 'Dashboard', loadChildren: () => import('app/modules/admin/KTC/Dashboard.module').then(m => m.DashboardModule) },
             { path: 'QuanLyThuoc', loadChildren: () => import('app/modules/pages/quan-ly-thuoc/quan-ly-thuoc.module').then(m => m.QuanLyThuocModule) },
+            { path: 'QuanLyXuatHang', loadChildren: () => import('app/modules/pages/quan-ly-xuat-hang/quan-ly-xuat-hang.module').then(m => m.QuanLyXuatHangModule) },
+            { path: 'QuanLyNhapHang', loadChildren: () => import('app/modules/pages/quan-ly-nhap-hang/quan-ly-nhap-hang.module').then(m => m.QuanLyNhapHangModule) },
             { path: 'QuanLyNguoiDung', loadChildren: () => import('app/modules/pages/quan-ly-nguoi-dung/quan-ly-nguoi-dung.module').then(m => m.QuanLyNguoiDungModule) },
             { path: 'QuanLyKhachHang', loadChildren: () => import('app/modules/pages/quan-ly-khach-hang/quan-ly-khach-hang.module').then(m => m.QuanLyKhachHangModule) },
             { path: 'QuanLyNhaCungCap', loadChildren: () => import('app/modules/pages/quan-ly-nha-cung-cap/quan-ly-nha-cung-cap.module').then(m => m.QuanLyNhaCungCapModule) },

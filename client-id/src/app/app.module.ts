@@ -13,8 +13,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
 import { NZ_I18N, vi_VN } from 'ng-zorro-antd/i18n';
-import { ko_KR } from 'ng-zorro-antd/i18n';
-import ko from '@angular/common/locales/ko';
+import vi from '@angular/common/locales/vi';
 import { registerLocaleData } from '@angular/common';
 import { IconsProviderModule } from './core/icons/icons-provider.module';
 
@@ -23,7 +22,7 @@ const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled'
 };
 
-registerLocaleData(ko);
+registerLocaleData(vi);
 
 @NgModule({
     declarations: [
