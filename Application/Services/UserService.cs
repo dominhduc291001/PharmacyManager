@@ -138,7 +138,7 @@ namespace Application.Services
             {
                 return result;
             }
-            var temp = await _context.Database.ExecuteSqlRawAsync($"sp_AddOrUpdate_Users {user.UserId}, {user.UserPass}, {user.FullName}, {user.PhoneNumber}, {user.Email}");
+            var temp = await _context.Database.ExecuteSqlRawAsync($"sp_AddOrUpdate_Users '{user.UserId}', '{user.UserPass}', '{user.FullName}', '{user.PhoneNumber}', '{user.Email}'");
             if (temp == 1)
             {
                 result.status = "true";

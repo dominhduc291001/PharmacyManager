@@ -18,7 +18,7 @@ export class ThinLayoutComponent implements OnInit, OnDestroy
     isOpen: boolean = false;
     isScreenSmall: boolean;
     navigation: Navigation;
-    navigationAppearance: 'default' | 'dense' = 'default';
+    navigationAppearance: 'default' | 'dense' = 'dense';
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**

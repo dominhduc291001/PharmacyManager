@@ -6,6 +6,8 @@ import { catchError } from 'rxjs/operators';
 import { UrlDefault } from 'app/shared/urlDefault';
 import { Thuoc } from '../models/thuoc';
 import { NguoiDung } from '../models/nguoi-dung';
+import { NguoiDungMoi } from '../models/nguoi-dung-moi';
+import { Role } from '../models/role';
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +26,20 @@ export class NguoiDungService {
         const url = `${UrlDefault._apiServer}/api/User/AllUsers`;
         return this.httpClient
             .get<NguoiDung>(url, this.httpOptions)
+            .pipe(catchError(this.handleError));
+    }
+
+    public createOrUpdate(user: NguoiDungMoi): Observable<any> {
+        const url = `${UrlDefault._apiServer}/api/User/CreateOrUpdateUser`;
+        return this.httpClient
+            .post<NguoiDungMoi>(url, user, this.httpOptions)
+            .pipe(catchError(this.handleError));
+    }
+
+    public addRole(role: Role): Observable<any> {
+        const url = `${UrlDefault._apiServer}/api/User/AddRoleUser`;
+        return this.httpClient
+            .post<NguoiDungMoi>(url, role, this.httpOptions)
             .pipe(catchError(this.handleError));
     }
 

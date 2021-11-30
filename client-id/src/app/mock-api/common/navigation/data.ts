@@ -6,14 +6,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
         id: 'product',
         title: 'Quản lý thuốc',
         type: 'basic',
-        icon: 'heroicons_outline:shield-check',
+        icon: 'heroicons_outline:beaker',
         link: '/QuanLyThuoc'
     },
     {
         id: 'user',
         title: 'Quản lý người dùng',
         type: 'basic',
-        icon: 'heroicons_outline:shield-check',
+        icon: 'heroicons_outline:user',
         link: '/QuanLyNguoiDung'
     },
     {
@@ -21,7 +21,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         title: 'Quản lý khách hàng',
         tooltip: 'Quản lý khách hàng',
         type: 'basic',
-        icon: 'heroicons_outline:home',
+        icon: 'heroicons_outline:phone',
         link: '/QuanLyKhachHang'
     },
     {
@@ -29,7 +29,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         title: 'Quản lý nhà cung cấp',
         tooltip: 'Quản lý nhà cung cấp',
         type: 'basic',
-        icon: 'heroicons_outline:home',
+        icon: 'heroicons_outline:shopping-cart',
         link: '/QuanLyNhaCungCap'
     }
 ];
@@ -39,7 +39,7 @@ export const compactNavigation: FuseNavigationItem[] = [
         title: 'Quản lý thuốc',
         tooltip: 'Quản lý thuốc',
         type: 'basic',
-        icon: 'heroicons_outline:home',
+        icon: 'heroicons_outline:beaker',
         link: '/QuanLyThuoc'
     },
     {
@@ -47,7 +47,7 @@ export const compactNavigation: FuseNavigationItem[] = [
         title: 'Quản lý người dùng',
         tooltip: 'Quản lý người dùng',
         type: 'basic',
-        icon: 'heroicons_outline:home',
+        icon: 'heroicons_outline:user',
         link: '/QuanLyNguoiDung'
     },
     {
@@ -55,7 +55,7 @@ export const compactNavigation: FuseNavigationItem[] = [
         title: 'Quản lý khách hàng',
         tooltip: 'Quản lý khách hàng',
         type: 'basic',
-        icon: 'heroicons_outline:home',
+        icon: 'heroicons_outline:phone',
         link: '/QuanLyKhachHang'
     },
     {
@@ -63,7 +63,7 @@ export const compactNavigation: FuseNavigationItem[] = [
         title: 'Quản lý nhà cung cấp',
         tooltip: 'Quản lý nhà cung cấp',
         type: 'basic',
-        icon: 'heroicons_outline:home',
+        icon: 'heroicons_outline:shopping-cart',
         link: '/QuanLyNhaCungCap'
     }
 ];

@@ -13,8 +13,65 @@
         <nz-modal [(nzVisible)]="isVisible" [nzTitle]="modelTitle" (nzOnCancel)="handleCancel()" [nzFooter]="null">
             <ng-container *nzModalContent>
                 <div *ngIf="contentCreateModel">
+                    <form [formGroup]="formData" (ngSubmit)="submitFormCreate()">
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Mã người dùng:</label>
+                            <input class="col-span-8" nz-input formControlName="userId" placeholder="Nhập mã người dùng..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Mật khẩu:</label>
+                            <input class="col-span-8" nz-input formControlName="userPass" placeholder="Nhập mật khẩu..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Họ và tên:</label>
+                            <input class="col-span-8" nz-input formControlName="fullName" placeholder="Nhập họ và tên..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Số điện thoại:</label>
+                            <input class="col-span-8" nz-input formControlName="phoneNumber" placeholder="Nhập số điện thoại..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Email:</label>
+                            <input class="col-span-8" nz-input formControlName="email" placeholder="Nhập email..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <div class="col-span-4"></div>
+                            <div class="col-span-8">
+                                <button type="submit" nz-button nzType="primary" class="self-center">Thêm</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div *ngIf="!contentCreateModel">
+                    <form [formGroup]="formData" (ngSubmit)="submitFormUpdate()">
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Mã người dùng:</label>
+                            <input class="col-span-8" nz-input formControlName="userId" disabled placeholder="Nhập mã người dùng..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Họ và tên:</label>
+                            <input class="col-span-8" nz-input formControlName="fullName" placeholder="Nhập họ và tên..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Số điện thoại:</label>
+                            <input class="col-span-8" nz-input formControlName="phoneNumber" placeholder="Nhập số điện thoại..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Email:</label>
+                            <input class="col-span-8" nz-input formControlName="email" placeholder="Nhập email..." />
+                        </div>
+                        <p class="text-red-500 mb-2 mt-2">Nhập mật khẩu để xác nhận</p>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Mật khẩu:</label>
+                            <input class="col-span-8" nz-input formControlName="userPass" placeholder="Nhập mật khẩu..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <div class="col-span-4"></div>
+                            <div class="col-span-8">
+                                <button type="submit" nz-button nzType="primary" class="self-center">Thêm</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </ng-container>
         </nz-modal>
@@ -37,7 +94,7 @@
                         <td>{{data.email}}</td>
                         <td>
                             <button (click)="showModalUpdate(data)" nz-button nzType="default" nzWarning>Sửa</button>
-                            <button (click)="deleteProduct(data.proId)" nz-button nzType="primary" nzDanger class="ml-2">Xóa</button>
+                            <button (click)="deleteProduct(data.userId)" nz-button nzType="primary" nzDanger class="ml-2">Xóa</button>
                         </td>
                     </tr>
                 </tbody>
