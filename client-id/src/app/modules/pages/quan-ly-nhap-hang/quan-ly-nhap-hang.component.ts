@@ -11,6 +11,8 @@ import { KhachHang } from 'app/core/models/khach-hang';
 import { NhapHang } from 'app/core/models/nhap-hang';
 import { NhapHangRequest } from 'app/core/models/nhap-hang-request';
 import { NhapHangService } from 'app/core/services/nhapHangService.service';
+import { NhaCungCap } from 'app/core/models/nha-cung-cap';
+import { NhaCungCapService } from 'app/core/services/nhaCungCapService.service';
 
 @Component({
     selector: 'quan-ly-nhap-hang',
@@ -23,7 +25,7 @@ export class QuanLyNhapHangComponent implements OnInit {
     spinning = false;
     tableData: NhapHang[];
     listThuoc: Thuoc[];
-    listKhachHang: KhachHang[];
+    listNhaCungCap: NhaCungCap[];
     listNguoiDung: NguoiDung[];
     isVisible = false;
     impDate: string = null;
@@ -38,12 +40,12 @@ export class QuanLyNhapHangComponent implements OnInit {
         supId: new FormControl(),
         userId: new FormControl(),
         proId: new FormControl(),
-        quantity:new FormControl(),
+        quantity: new FormControl(),
     });
 
     // eslint-disable-next-line @typescript-eslint/naming-convention
     // eslint-disable-next-line max-len
-    constructor(private nguoiDung: NguoiDungService, private khachHang: KhachHangService, private thuocService: ThuocService, private nhapHangService: NhapHangService, private message: NzMessageService, private i18n: NzI18nService) { }
+    constructor(private nguoiDung: NguoiDungService, private nhaCungCapService: NhaCungCapService, private thuocService: ThuocService, private nhapHangService: NhapHangService, private message: NzMessageService, private i18n: NzI18nService) { }
 
     ngOnInit(): void {
         this.spinning = true;
@@ -64,8 +66,8 @@ export class QuanLyNhapHangComponent implements OnInit {
             this.createMessage('error', 'Tải dữ liệu không thành công');
         });
 
-        this.khachHang.AllCustomer().subscribe((data) => {
-            this.listKhachHang = data;
+        this.nhaCungCapService.AllSupplier().subscribe((data) => {
+            this.listNhaCungCap = data;
             this.spinning = false;
         }, (err) => {
             this.spinning = false;
@@ -114,9 +116,11 @@ export class QuanLyNhapHangComponent implements OnInit {
         this.nhapHangRequest.supId = this.formData.get('supId').value;
         this.nhapHangRequest.userId = this.formData.get('userId').value;
         this.nhapHangRequest.proId = this.formData.get('proId').value;
-        this.nhapHangRequest.quantity = this.formData.get('quantity').value + 0;
+        this.nhapHangRequest.quantity = this.formData.get('quantity').value;
 
-        this.nhapHangService.ImpOrderProduct(this.nhapHangRequest).subscribe((data) => {
+        console.log(this.nhapHangRequest);
+
+        this.nhapHangService.ImpOrderProduct(this.nhapHangRequest as NhapHangRequest).subscribe((data) => {
             this.handleCancel();
             this.createMessage('success', 'Thêm đơn nhập hàng mới thành công');
             this.ngOnInit();

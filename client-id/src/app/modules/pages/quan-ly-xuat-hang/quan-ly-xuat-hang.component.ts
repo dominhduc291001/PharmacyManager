@@ -9,8 +9,9 @@ import { ThuocService } from 'app/core/services/thuocService.service';
 import { Thuoc } from 'app/core/models/thuoc';
 import { NguoiDungService } from 'app/core/services/nguoiDungService.service';
 import { NguoiDung } from 'app/core/models/nguoi-dung';
-import { NhaCungCap } from 'app/core/models/nha-cung-cap';
 import { NhaCungCapService } from 'app/core/services/nhaCungCapService.service';
+import { KhachHang } from 'app/core/models/khach-hang';
+import { KhachHangService } from 'app/core/services/khachHangService.service';
 
 @Component({
     selector: 'quan-ly-xuat-hang',
@@ -23,7 +24,7 @@ export class QuanLyXuatHangComponent implements OnInit {
     spinning = false;
     tableData: XuatHang[];
     listThuoc: Thuoc[];
-    listNhaCungCap: NhaCungCap[];
+    listKhachHang: KhachHang[];
     listNguoiDung: NguoiDung[];
     isVisible = false;
     expDate: Date = null;
@@ -44,7 +45,7 @@ export class QuanLyXuatHangComponent implements OnInit {
 
     // eslint-disable-next-line @typescript-eslint/naming-convention
     // eslint-disable-next-line max-len
-    constructor(private nguoiDung: NguoiDungService, private nhaCungCap: NhaCungCapService, private thuocService: ThuocService, private xuatHangService: XuatHangService, private message: NzMessageService, private i18n: NzI18nService) { }
+    constructor(private nguoiDung: NguoiDungService, private khachHangService: KhachHangService, private thuocService: ThuocService, private xuatHangService: XuatHangService, private message: NzMessageService, private i18n: NzI18nService) { }
 
     ngOnInit(): void {
         this.spinning = true;
@@ -65,8 +66,8 @@ export class QuanLyXuatHangComponent implements OnInit {
             this.createMessage('error', 'Tải dữ liệu không thành công');
         });
 
-        this.nhaCungCap.AllSupplier().subscribe((data) => {
-            this.listNhaCungCap = data;
+        this.khachHangService.AllCustomer().subscribe((data) => {
+            this.listKhachHang = data;
             this.spinning = false;
         }, (err) => {
             this.spinning = false;
@@ -116,8 +117,8 @@ export class QuanLyXuatHangComponent implements OnInit {
         this.xuatHangRequest.cusId = this.formData.get('cusId').value;
         this.xuatHangRequest.userId = this.formData.get('userId').value;
         this.xuatHangRequest.proId = this.formData.get('proId').value;
-        this.xuatHangRequest.quantity = this.formData.get('quantity').value + 0;
-        this.xuatHangRequest.expPrice = this.formData.get('expPrice').value + 0;
+        this.xuatHangRequest.quantity = this.formData.get('quantity').value;
+        this.xuatHangRequest.expPrice = this.formData.get('expPrice').value;
 
         this.xuatHangService.ExpOrderProduct(this.xuatHangRequest).subscribe((data) => {
             this.handleCancel();
