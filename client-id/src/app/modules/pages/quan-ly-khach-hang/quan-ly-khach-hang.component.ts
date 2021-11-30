@@ -1,12 +1,8 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { LoaiThuoc } from 'app/core/models/loai-thuoc';
 import { KhachHang } from 'app/core/models/khach-hang';
-import { ThuocRequest } from 'app/core/models/thuoc-request';
-import { ThuocService } from 'app/core/services/thuocService.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { KhachHangService } from 'app/core/services/khachHangService.service';
-
 
 @Component({
     selector: 'quan-ly-khach-hang',

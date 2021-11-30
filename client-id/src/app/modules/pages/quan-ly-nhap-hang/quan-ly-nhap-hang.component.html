@@ -1,0 +1,88 @@
+<div class="container w-full">
+    <div class="flex flex-col flex-auto bg-white dark:bg-gray-800 min-h-full border-t">
+        <div class="w-full text-left">
+            <button class="mt-6 ml-4" (click)="showModalCreate()" nz-button nzType="primary">Thêm đơn nhập hàng mới</button>
+        </div>
+        <nz-modal [(nzVisible)]="isVisible" [nzTitle]="modelTitle" (nzOnCancel)="handleCancel()" [nzFooter]="null">
+            <ng-container *nzModalContent>
+                <div *ngIf="contentCreateModel">
+                    <form [formGroup]="formData" (ngSubmit)="submitFormCreate()">
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Mã nhập hàng:</label>
+                            <input class="col-span-8" nz-input formControlName="impId" placeholder="Nhập mã nhập hàng..." />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Ngày nhập hàng:</label>
+                            <nz-date-picker nzFormat="dd/MM/yyyy" nzPlaceHolder="-- Chọn ngày nhập hàng --" class="col-span-8" [(ngModel)]="impDate" [ngModelOptions]="{standalone: true}"></nz-date-picker>
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Nhà cung cấp:</label>
+                            <nz-select class="col-span-8" nzPlaceHolder="-- Chọn nhà cung cấp --" formControlName="supId">
+                                <nz-option *ngFor="let ncc of listNhaCungCap" [nzValue]="ncc.supId" [nzLabel]="ncc.supName"></nz-option>
+                            </nz-select>
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Người dùng:</label>
+                            <nz-select class="col-span-8" nzPlaceHolder="-- Chọn người dùng --" formControlName="userId">
+                                <nz-option *ngFor="let nguoiDung of listNguoiDung" [nzValue]="nguoiDung.userId" [nzLabel]="nguoiDung.fullName"></nz-option>
+                            </nz-select>
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Thuốc:</label>
+                            <nz-select class="col-span-8" nzPlaceHolder="-- Chọn thuốc --" formControlName="proId">
+                                <nz-option *ngFor="let thuoc of listThuoc" [nzValue]="thuoc.proId" [nzLabel]="thuoc.proName"></nz-option>
+                            </nz-select>
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Số lượng thuốc:</label>
+                            <input class="col-span-8" nz-input formControlName="quantity" placeholder="Nhập số lượng thuốc..." type="number" />
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <label class="col-span-4 self-center">Ghi chú nhập hàng:</label>
+                            <textarea class="col-span-8" nz-input formControlName="impNote" placeholder="Nhập ghi chú nhập hàng..."></textarea>
+                        </div>
+                        <div class="grid grid-cols-12 mb-2">
+                            <div class="col-span-4"></div>
+                            <div class="col-span-8">
+                                <button type="submit" nz-button nzType="primary" class="self-center">Thêm</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </ng-container>
+        </nz-modal>
+        <div class="flex flex-col max-w-full mt-6 p-4  flex-nowrap border border-solid overflow-x-auto">
+            <nz-table class=" w-full" nzFrontPagination="true" [nzScroll]="reponsiveTable()" nzSize="small" #basicTable [nzData]="tableData" [nzLoading]="spinning">
+                <thead>
+                    <tr>
+                        <th class="bg-gray-100 text-center">Mã nhập hàng</th>
+                        <th class="bg-gray-100 text-center">Ngày nhập nhập hàng</th>
+                        <th class="bg-gray-100 text-center">Ghi chú nhập hàng</th>
+                        <th class="bg-gray-100 text-center">Mã người dùng</th>
+                        <th class="bg-gray-100 text-center">Mã nhà cung cấp</th>
+                        <th class="bg-gray-100 text-center">Tên nhà cung cấp</th>
+                        <th class="bg-gray-100 text-center">Tổng giá tiền</th>
+
+                        <th class="bg-gray-100 text-center">Mã thuốc</th>
+                        <th class="bg-gray-100 text-center">Tên thuốc</th>
+                        <th class="bg-gray-100 text-center">Số lượng</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr *ngFor="let data of basicTable.data">
+                        <td>{{data.impId}}</td>
+                        <td>{{data.impDate | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{data.impNote}}</td>
+                        <td>{{data.userId}}</td>
+                        <td>{{data.supId}}</td>
+                        <td>{{data.supName}}</td>
+                        <td>{{data.impTotal}}</td>
+                        <td>{{data.proName}}</td>
+                        <td>{{data.proId}}</td>
+                        <td>{{data.quantity}}</td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+</div>
